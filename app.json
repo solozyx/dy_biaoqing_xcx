@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/collect/collect",
+    "pages/all/all",
+    "pages/search/search",
+    "pages/list/list",
+    "pages/imagePanel/imagePanel",
+    "pages/appreciate/appreciate"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffd94a",
+    "navigationBarTitleText": "表情兔",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#303133",
+    "selectedColor": "#303133",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "text": "近期更新",
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabBar/update.png",
+        "selectedIconPath": "images/tabBar/update-select.png"
+      },
+      {
+        "text": "全部表情",
+        "pagePath": "pages/all/all",
+        "iconPath": "images/tabBar/all.png",
+        "selectedIconPath": "images/tabBar/all-select.png"
+      },
+      {
+        "text": "收藏",
+        "pagePath": "pages/collect/collect",
+        "iconPath": "images/tabBar/collect.png",
+        "selectedIconPath": "images/tabBar/collect-select.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 12000
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

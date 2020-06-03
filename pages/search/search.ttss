@@ -1,0 +1,74 @@
+/* pages/search/search.ttss */
+.search_input{
+  background:#efeff4;
+  position:relative;
+  padding:10px;
+  font-size: 0.8rem
+}
+.search_icon{
+  position: absolute;
+  top:14px;
+  left:15px
+}
+.clear_icon{
+  top: 14px;
+  right: 3.5rem;
+  position: absolute
+}
+.input{
+  margin-right: 2.5rem;
+  background: #fff;
+  padding-left: 24px;
+  height: 20px;
+  border-radius: 5px;
+  padding-right:30px;
+}
+.input-placeholder{
+  font-size: 0.6rem;
+}
+.search{
+  position: absolute;
+  top:14px;
+  right: 10px;
+  width:2.5rem;
+  text-align: center;
+}
+/* pages/list/list.ttss */
+.list{
+margin: 0 10px;
+padding: 10px 0;
+border-bottom: 1px solid #efeff4;
+height: 5rem;
+display: flex;
+}
+.image{
+  width: 5rem;
+  height: 5rem;
+}
+.describ_container{
+  height: 100%;
+}
+.b_title,.s_title{
+height: 1rem;
+line-height: 1rem;
+}
+.b_title{
+  padding-top: 1.8rem;
+  padding-bottom: 5px;
+  font-size: 0.9rem;
+  font-weight: bold
+}
+.s_title{
+  font-size: 0.7rem;
+  color: #C0C4CC;
+}
+.search_title{
+  font-size: 0.6rem;
+  padding: 10px;
+  border-bottom: 1px solid #efeff4;
+}
+.no_data{
+  font-size: 0.7rem;
+  color: #C0C4CC;
+  padding: 300rpx 0;
+}

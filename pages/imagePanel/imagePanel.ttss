@@ -1,0 +1,103 @@
+/* pages/imagePanel/imagePanel.ttss */
+
+.select_container {
+  height: 9rem;
+  text-align: center;
+}
+
+.select_container .image {
+  height: 7rem;
+  width: 7rem;
+  margin-top: 1rem;
+}
+
+.image_title {
+  background: #efeff4;
+  font-size: 0.7rem;
+  padding: 5px 15px;
+  color: #606266;
+  margin-bottom: 10px;
+}
+
+.img-container {
+  padding-bottom: 3.5rem;
+}
+
+.img-item {
+  width: 25%;
+  height: 4rem;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+}
+
+.lastIndex {
+  padding-right: 0;
+}
+
+.bottom_container {
+  width: 100%;
+  bottom: 0;
+  overflow: hidden;
+  height: 2rem;
+  line-height: 2rem;
+  border-top: 1px solid #f2f6fc;
+  box-sizing: border-box;
+}
+
+.collect, .share ,.zs{
+  display: flex;
+  font-size: 0.9rem;
+  width: 33.3%;
+  float: left;
+  align-items: center;
+  justify-content: center;
+}
+
+.share,.collect {
+  border-right: 1px solid #f2f6fc;
+  box-sizing: border-box;
+}
+
+.share_icon, .collect_icon {
+  width: 1.7rem;
+  height: 1.7rem;
+  margin-bottom: 0.2rem;
+}
+.zs_icon{
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.select_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #fff;
+}
+
+.imge_wrap {
+  margin-top: 13rem;
+}
+.more-game {
+  font-size: 0.8rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  padding: 0 20px;
+  border-top: 1px solid #f2f6fc;
+}
+.more-game::before {
+  position: relative;
+  display: inline-block;
+  top: 5px;
+  content: '';
+  background: url('http://qcloudtest-1256295337.cosgz.myqcloud.com/imgs/1524464471011-rkkvigohM.png');
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+.more-game  .play {
+  float: right;
+}

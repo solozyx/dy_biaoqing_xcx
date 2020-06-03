@@ -1,0 +1,14 @@
+<!--pages/list/list.ttml-->
+<block tt:for="{{listData}}" tt:for-item="item" tt:for-index="itemIdx">
+  <view bindtap="showMoreImg" class="list" data-imgs="{{item.imgs}}">
+    <image src="{{item.imgUrl}}" mode="scaleToFill" class="image"></image>
+    <view class="describ_container">
+      <view class="b_title">
+        {{item.title}}
+      </view>
+      <view class="s_title">
+        {{item.remark}}
+      </view>
+    </view>
+  </view>
+</block>

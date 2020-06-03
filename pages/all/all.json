@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "search-tool": "/components/search_tool/searchTool"
+  }
+}

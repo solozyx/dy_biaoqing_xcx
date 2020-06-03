@@ -1,0 +1,113 @@
+/**index.ttss**/
+
+.recent_container {
+  margin-top: 2.5rem;
+}
+
+.recent_content {
+  height: 110%;
+}
+
+.tody_update, .recent_update, .more-game {
+  padding-left: 8px;
+  font-size: 0.8rem;
+}
+
+.more-game {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  padding: 5px 8px;
+}
+
+.img-container, .recent-img-container {
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.tody_update::before {
+  position: relative;
+  display: inline-block;
+  top: 5px;
+  content: '';
+  background: url('http://qcloudtest-1256295337.cosgz.myqcloud.com/imgs/1524468578635-HkjvjWo2G.png');
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.recent_update::before {
+  position: relative;
+  display: inline-block;
+  top: 5px;
+  content: '';
+  background: url('http://qcloudtest-1256295337.cosgz.myqcloud.com/imgs/1524468586469-r1Mdibj3G.png');
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.more-game::before {
+  position: relative;
+  display: inline-block;
+  top: 5px;
+  content: '';
+  background: url('http://qcloudtest-1256295337.cosgz.myqcloud.com/imgs/1524464471011-rkkvigohM.png');
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.more-game  .play {
+  float: right;
+  padding-right: 20px;
+}
+
+.recent_update {
+  float: left;
+  padding-bottom: 10px;
+}
+
+.img-item {
+  width: 25%;
+  height: 6rem;
+  padding-right: 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.img-item:last-child {
+  padding-right: 0;
+}
+
+.recent-img-item {
+  width: 25%;
+  height: 4rem;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+}
+
+.lastIndex {
+  padding-right: 0;
+}
+
+.contact-container {
+  overflow: hidden;
+}
+
+.contact {
+  float: right;
+  height: 2rem;
+  width: 6rem;
+  margin-right: 8px;
+  border: none;
+  background: url("http://www.moepan.net/uploads/2018032614162939373774.png") no-repeat;
+  background-size: 100% 100%;
+}
+
+.contact::after {
+  display: none;
+}

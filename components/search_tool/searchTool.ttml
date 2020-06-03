@@ -1,0 +1,6 @@
+<!--components/search_tool/searchTool.ttml-->
+<view class="search_tool_container" bindtap='_gotoSearch'>
+<view class="search_tool">
+<span class='search'><icon type="search" size="16" class='search_icon' />搜索</span>
+</view>
+</view>

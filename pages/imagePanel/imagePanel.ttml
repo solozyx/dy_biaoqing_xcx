@@ -1,0 +1,29 @@
+<!--pages/imagePanel/imagePanel.ttml-->
+<view class="select_wrap">
+<view class="select_container">
+  <image src="{{selectUrl}}" mode="aspectFit" class="image" bindtap="previewImage"></image>
+</view>
+<view class="bottom_container">
+  <view class="share" bindtap='shareImage'>
+    <image src='/images/share.png' class="share_icon"></image>
+    <text class="share_text">分享</text>
+  </view>
+  <view class="collect" bindtap='collectImg'>
+    <image src="{{isCollect?'/images/have_collect.png':'/images/collect.png'}}" class="collect_icon" mode="aspectFit"></image>
+    <text class="collect_text">{{isCollect?"已收藏":"收藏"}}</text>
+  </view>
+   <view class="zs" bindtap='gotozs'>
+    <image src='/images/zs_icon.png' class="zs_icon" mode="aspectFit"></image>
+    <text class="share_text">赞赏</text>
+  </view>
+</view>
+<view class='more-game'>益智游戏<view class='play' bindtap='playGame'>玩一玩></view></view>
+</view>
+<view class="imge_wrap">
+<view class="image_title">相关表情</view>
+<scroll-view class="img-container">
+  <block tt:for="{{imgData}}" tt:for-item="item" tt:for-index="itemIdx">
+    <image bindtap="selectImg" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item}}" data-url="{{item}}" mode="aspectFit" lazy-load="true"></image>
+  </block>
+</scroll-view>
+</view>

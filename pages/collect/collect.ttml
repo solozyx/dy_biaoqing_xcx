@@ -1,0 +1,17 @@
+<!--pages/collect/collect.ttml-->
+<view class="avatar-container">
+  <view class="userinfo">
+    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+</view>
+<block tt:if="{{collectData.length>0}}">
+<scroll-view class="collect-img-container">
+  <block tt:for="{{collectData}}" tt:for-item="item" tt:for-index="itemIdx">
+    <image data-url="{{item}}" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item}}" mode="aspectFit" bindtap="openImg"></image>
+  </block>
+</scroll-view>
+</block>
+<view tt:else class="no_data container">
+  暂无收藏
+</view>
