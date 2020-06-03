@@ -2,7 +2,6 @@
 import api from '../../utils/api.js';
 import utils from '../../utils/util.js';
 
-var qcloud = require('../../vendor/wafer2-client-sdk/index');
 
 const app = getApp();
 Page({
@@ -26,22 +25,24 @@ Page({
       this.setData({
         openId: app.globalData.userInfo.openId
       });
-    } else {
-      qcloud.request({
-        url: api.SERVER_PATH + api.USER,
-        login: true,
+    } 
+    
+    // else {
+    //   qcloud.request({
+    //     url: api.SERVER_PATH + api.USER,
+    //     login: true,
 
-        success(res) {
-          this.setData({
-            openId: res.data.data.openId
-          });
-          api.get(api.SERVER_PATH + api.COLLECT + `/${res.data.data.openId}`).then(res => {
-            tt.setStorageSync("collect_img", res.data);
-          });
-        }
+    //     success(res) {
+    //       this.setData({
+    //         openId: res.data.data.openId
+    //       });
+    //       api.get(api.SERVER_PATH + api.COLLECT + `/${res.data.data.openId}`).then(res => {
+    //         tt.setStorageSync("collect_img", res.data);
+    //       });
+    //     }
 
-      });
-    }
+    //   });
+    // }
 
     if (tt.getStorageSync("xilie")) {
       let imgs = tt.getStorageSync("xilie");
