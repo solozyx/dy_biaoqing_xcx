@@ -2,7 +2,7 @@
 
 import Promise from './es6-promise.min';
 module.exports = {
-  SERVER_PATH: 'http://129.204.202.171/weapp/',
+  SERVER_PATH: 'https://dy.test97.com/weapp/',
   // SERVER_PATH: 'https://www.d566.top/weapp/',/**https://650663973.esrabbit.xyz/weapp/ */
   CLASSIFY: 'classify',
   // 分类

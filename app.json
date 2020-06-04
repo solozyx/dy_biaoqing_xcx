@@ -6,7 +6,8 @@
     "pages/search/search",
     "pages/list/list",
     "pages/imagePanel/imagePanel",
-    "pages/appreciate/appreciate"
+    "pages/appreciate/appreciate",
+    "pages/person/person"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,6 +37,12 @@
       {
         "text": "收藏",
         "pagePath": "pages/collect/collect",
+        "iconPath": "images/tabBar/collect.png",
+        "selectedIconPath": "images/tabBar/collect-select.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/person/person",
         "iconPath": "images/tabBar/collect.png",
         "selectedIconPath": "images/tabBar/collect-select.png"
       }
