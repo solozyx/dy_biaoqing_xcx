@@ -5,6 +5,7 @@ import utils from '../../utils/util.js';
 const app = getApp();
 Page({
   data: {
+    index: 1,
     userInfo: {},
     hasUserInfo: false,
     todayUpdate: [],
@@ -19,7 +20,16 @@ Page({
       url: '../logs/logs'
     });
   },
-  onLoad: function () {},
+  onLoad: function () { },
+  /**
+   * 切换tab
+   */
+  handlerTab(e) {
+    let index = e.target.dataset.index
+    this.setData({
+      index: index,
+    })
+  },
   onReady: function () {
     var res = tt.getSystemInfoSync();
     console.log(res);
@@ -68,11 +78,15 @@ Page({
     });
   },
 
+  getClassImg() {
+
+  },
+
   /**
   * 用户点击右上角分享
   */
-  onShareAppMessage: function () {},
-  onPullDownRefresh: function () {},
+  onShareAppMessage: function () { },
+  onPullDownRefresh: function () { },
   lower: function (e) {
     let allImgData = this.data.allImgData;
     console.log(this.data.recentUpdate);
@@ -89,16 +103,6 @@ Page({
   seekExpression: function () {
     tt.navigateTo({
       url: '/pages/seekExpression/seekExpression'
-    });
-  },
-  playGame: function () {
-    tt.navigateToMiniProgram({
-      appId: 'wxec8f800476c3964a',
-      path: 'index.html?channel=bqtcpc',
-
-      success(res) {// 打开成功
-      }
-
     });
   }
 });

@@ -10,7 +10,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffd94a",
+    "navigationBarBackgroundColor": "#ffda44",
     "navigationBarTitleText": "表情兔",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
