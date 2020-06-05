@@ -10,6 +10,10 @@ Page({
     hasUserInfo: false,
     todayUpdate: [],
     recentUpdate: [],
+    emoticon: [], // 表情包
+    headPortrait: [],//头像
+    backgroundImage: [],//背景图
+    wallpaper: [],//壁纸
     allImgData: [],
     updateImg: 24,
     height: ''
@@ -20,15 +24,8 @@ Page({
       url: '../logs/logs'
     });
   },
-  onLoad: function () { },
-  /**
-   * 切换tab
-   */
-  handlerTab(e) {
-    let index = e.target.dataset.index
-    this.setData({
-      index: index,
-    })
+  onLoad: function () { 
+    this.getClassImg()
   },
   onReady: function () {
     var res = tt.getSystemInfoSync();
@@ -79,7 +76,13 @@ Page({
   },
 
   getClassImg() {
-
+    api.get(api.SERVER_PATH + api.CLASSIFY).then(res => {
+      tt.hideLoading();
+      this.setData({
+        allData: res.data
+      });
+      console.log(this.data.allData);
+    });
   },
 
   /**
