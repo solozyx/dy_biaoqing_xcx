@@ -6,20 +6,20 @@
   <view class='search' bindtap="search">搜索</view>
 </view>
 <block tt:if="{{searchData.length>0}}">
-  <view class="search_title">表情系列</view>
+  <!-- <view class="search_title">表情系列</view> -->
+  <view class="img-container">
   <block tt:for="{{searchData}}" tt:for-item="item" tt:for-index="itemIdx">
-    <view bindtap="showMoreImg" class="list" data-imgs="{{item.imgs}}">
-      <image src="{{item.imgUrl}}" mode="scaleToFill" class="image"></image>
-      <view class="describ_container">
+      <image src="{{item.img}}" mode="scaleToFill" class="img-item" bindtap="showMoreImg"></image>
+      <!-- <view class="describ_container">
         <view class="b_title">
           {{item.title}}
         </view>
         <view class="s_title">
           {{item.remark}}
         </view>
-      </view>
-    </view>
+      </view> -->
   </block>
+  </view>
 </block>
 <view tt:else class="no_data container">
   暂无任何表情

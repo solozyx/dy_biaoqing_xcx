@@ -1,11 +1,5 @@
 /* components/search_tool/searchTool.ttss */
 .search_tool_container{
-position: fixed;
-width: 100%;
-top: 0;
-left: 0;
-right: 0;
-z-index: 9999;
 background: #fff;
 }
 .search_tool{
@@ -25,5 +19,5 @@ box-sizing: border-box;
 .search_icon{
   position: absolute;
   left:-1rem;
-  top:2px;
+  top:0;
 }

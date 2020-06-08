@@ -72,10 +72,7 @@ Page({
   },
 
   getSearch(value) {
-    api.get(api.SERVER_PATH + api.SERIES_ALL + `?search=${value}`).then(res => {
-      res.data.forEach(it => {
-        it.imgs = utils.getImgs(it.imgs);
-      });
+    api.get(api.SERVER_PATH + api.IMGS + `?title=${value}`).then(res => {
       this.setData({
         searchData: res.data
       });

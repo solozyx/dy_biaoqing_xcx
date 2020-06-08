@@ -1,7 +1,16 @@
 /* pages/list/list.ttss */
-.list-img-item {
+.img-item {
   width: 33.3%;
   height: 5rem;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.long-img-item {
+  width: 33.3%;
+  height: 9rem;
   padding-bottom: 5px;
   padding-right: 5px;
   box-sizing: border-box;
@@ -12,6 +21,7 @@
   padding: 8px;
   box-sizing: border-box;
 }
+
 .lastIndex {
   padding-right: 0;
 }

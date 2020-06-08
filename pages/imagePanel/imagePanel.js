@@ -19,83 +19,49 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let imgs = options.imgs;
-
-    if (app.globalData.userInfo && app.globalData.userInfo.openId) {
-      this.setData({
-        openId: app.globalData.userInfo.openId
-      });
-    } 
-    
-    // else {
-    //   qcloud.request({
-    //     url: api.SERVER_PATH + api.USER,
-    //     login: true,
-
-    //     success(res) {
-    //       this.setData({
-    //         openId: res.data.data.openId
-    //       });
-    //       api.get(api.SERVER_PATH + api.COLLECT + `/${res.data.data.openId}`).then(res => {
-    //         tt.setStorageSync("collect_img", res.data);
-    //       });
-    //     }
-
-    //   });
-    // }
-
-    if (tt.getStorageSync("xilie")) {
-      let imgs = tt.getStorageSync("xilie");
-      this.isCollect(utils.getIds(imgs[0])[0], isc => {
+    let imgItem = JSON.parse(options.imgItem);
+    this.setData({
+      selectUrl: imgItem.img
+    })
+    if (imgItem.series_id) {
+      api.get(api.SERVER_PATH + api.IMGS + `?series_id=${imgItem.series_id}`).then(res => {
         this.setData({
-          isCollect: isc
-        });
-      });
-      this.setData({
-        imgData: imgs,
-        selectUrl: imgs[0]
-      });
-    } else {
-      api.get(api.SERVER_PATH + api.IMGS).then(res => {
-        res.data.forEach(it => {
-          it.imgUrl = `http://qcloudtest-1256295337.file.myqcloud.com${it.imgUrl.slice(47)}`;
-        });
-        this.setData({
-          imgData: utils.getImgsdir(imgs, res.data)
-        });
+          imgData: res.data.map(item=>item.img)
+        })
       });
     }
+    console.log(imgItem)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
