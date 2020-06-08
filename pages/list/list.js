@@ -13,13 +13,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
-    api.get(api.SERVER_PATH + api.SERIRS + `/${options.id}`).then(res => {
-      console.log(res);
       this.setData({
-        listData: res.data
-      });
-    });
+        listData:JSON.parse(options.imgarr)
+      })
   },
 
   /**

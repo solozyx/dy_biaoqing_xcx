@@ -14,7 +14,7 @@
     margin-bottom:30rpx;
 }
 .getUserInfo button{
-    background:#E32E01;
+    background:#ffda44;
     border:none;
     color:#fff;
     display:inline;
@@ -28,7 +28,7 @@
   justify-content: space-between;
   padding: 40rpx 0;
   box-sizing: border-box;
-  background: #fa2840;
+  background: #ffda44;
   background-size: 100% 100%;
 }
 
@@ -95,5 +95,5 @@
 }
 .re-right-content text {
   font-size: 0.7rem;
-  color:#fa2840;
+  color:#ffda44;
 }

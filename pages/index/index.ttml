@@ -1,39 +1,61 @@
 <!--index.ttml-->
 <search-tool bind:gotoSearch='openSearch' id='searchTool'></search-tool>
-<scroll-view class="recent_container" style="height:{{height}}" bindscrolltolower="lower" scroll-y="true" scroll-top="0">
-	<view class="recent_content">
-		<view class="tody_update">今日更新</view>
+<view class='banner-content'>
+	<image src="../../images/banner.jpg" mode="scaleToFill" class='banner' />
+</view>
+<view class="recent_content">
+	<!-- <view class="tody_update">今日更新</view>
 		<view class="img-container">
 			<block tt:for="{{todayUpdate}}" tt:for-item="item" tt:for-index="itemIdx">
 				<image bindtap="showMoreDetail" class="img-item" src="{{item.url}}" mode="scaleToFill" data-imgarr="{{item.imgArr}}" data-imgs='{{item.imgs}}'
 				 lazy-load="true"></image>
 			</block>
-		</view>
+		</view> -->
+	<scroll-view class="recent_container">
 		<view class="emoticon">
 			<view class="classify-title">表情包</view>
-			<view class='show_more'>查看更多</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr='{{emoticon}}'>查看更多</view>
+		</view>
+		<view class="img-container">
+			<block tt:for="{{emoticon}}" tt:for-item="item" tt:for-index="itemIdx">
+				<image bindtap="showMoreDetail" class="img-item" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<4}}'></image>
+			</block>
 		</view>
 		<view class="head-portrait">
 			<view class="classify-title">头像</view>
-			<view class='show_more'>查看更多</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr='{{headPortrait}}'>查看更多</view>
+		</view>
+		<view class="img-container">
+			<block tt:for="{{headPortrait}}" tt:for-item="item" tt:for-index="itemIdx">
+				<image bindtap="showMoreDetail" class="img-item" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<4}}'></image>
+			</block>
 		</view>
 		<view class="background-image">
 			<view class="classify-title">背景图</view>
-			<view class='show_more'>查看更多</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr={{backgroundImage}}>查看更多</view>
+		</view>
+		<view class="img-container">
+			<block tt:for="{{backgroundImage}}" tt:for-item="item" tt:for-index="itemIdx">
+				<image bindtap="showMoreDetail" class="img-item-long" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<4}}'></image>
+			</block>
 		</view>
 		<view class="wallpaper">
 			<view class="classify-title">壁纸</view>
-			<view class='show_more'>查看更多</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr={{wallpaper}}>查看更多</view>
+		</view>
+		<view class="img-container">
+			<block tt:for="{{wallpaper}}" tt:for-item="item" tt:for-index="itemIdx">
+				<image bindtap="showMoreDetail" class="img-item-long" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<4}}'></image>
+			</block>
 		</view>
 		<view class='contact-container'>
 			<view class="recent_update">近期更新</view>
-			<button bindtap="seekExpression" class="contact"></button>
-  </view>
-		<scroll-view class="recent-img-container">
+		</view>
+		<view class="recent-img-container">
 			<block tt:for="{{recentUpdate}}" tt:for-item="item" tt:for-index="itemIdx">
-				<image bindtap="showMoreDetail" class="recent-img-item {{(itemIdx+1)%3==0?'lastIndex':''}}" src="{{item.url}}" mode="aspectFit"
-				 data-imgarr="{{item.imgArr}}" data-imgs='{{item.imgs}}' lazy-load="true"></image>
+				<image bindtap="showMoreDetail" class="recent-img-item {{(itemIdx+1)%3==0?'lastIndex':''}}" src="{{item.img}}" mode="scaleToFill"
+				 lazy-load="true"></image>
 			</block>
-		</scroll-view>
-	</view>
+		</view>
+</view>
 </scroll-view>

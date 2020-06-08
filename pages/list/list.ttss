@@ -1,29 +1,17 @@
 /* pages/list/list.ttss */
-.list{
-margin: 0 10px;
-padding: 10px 0;
-border-bottom: 1px solid #efeff4;
-height: 5rem;
-display: flex;
-}
-.image{
-  width: 5rem;
+.list-img-item {
+  width: 33.3%;
   height: 5rem;
-}
-.describ_container{
-  height: 100%;
-}
-.b_title,.s_title{
-height: 1rem;
-line-height: 1rem;
-}
-.b_title{
-  padding-top: 1.8rem;
   padding-bottom: 5px;
-  font-size: 0.9rem;
-  font-weight: bold
+  padding-right: 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
-.s_title{
-  font-size: 0.7rem;
-  color: #C0C4CC;
+
+.img-container {
+  padding: 8px;
+  box-sizing: border-box;
+}
+.lastIndex {
+  padding-right: 0;
 }

@@ -2,7 +2,7 @@
   <view tt:if="{{!hasUserInfo && canIUse}}" class="getUserInfo">
     <image src="../../images/logo.png"></image>
     <view class="text">个人中心页面需要获取用户授权信息</view>
-    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
+    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录 </button>
   </view>
   
   <block tt:else>
@@ -13,31 +13,6 @@
       </view>
     </view>
     <view class='body-content'>
-      <view class='leave-times'>
-        <view class='left-content'>
-          <image src='../../images/leave-time.png' class='icon-img'></image>
-          <text>剩余次数</text>
-        </view>
-        <view class='right-content'>{{leaveTimes}}次</view>
-      </view>
-      <view class='split-line'></view>
-      <view class='leave-times'>
-        <view class='left-content'>
-          <image src='../../images/leave-date.png' class='icon-img'></image>
-          <text>到期时间</text>
-        </view>
-        <view class='right-content'>{{permanent?'永久':leveData}}</view>
-      </view>
-      <!-- <view class='recharge-content' bindtap='recharge' wx:if="{{systemInfo !=='ios'}}">
-        <view class='left-content'>
-          <image src='../../images/recharge.png' class='icon-img'></image>
-          <text>充值</text>
-        </view>
-        <view class='re-right-content'>
-        <text>开通VIP,不限次数</text>
-        <image src='../../images/arrow-right.png' class='icon-img'></image>
-        </view>
-      </view> -->
       <button open-type="contact" class='recharge-content'  session-from='{"nickName":"{{userInfo.nickName}}","avatarUrl":"{{userInfo.avatarUrl}}"}'>
         <view class='left-content'>
           <image src='../../images/kefu.png' class='icon-img'></image>

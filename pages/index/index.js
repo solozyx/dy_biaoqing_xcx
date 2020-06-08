@@ -24,7 +24,7 @@ Page({
       url: '../logs/logs'
     });
   },
-  onLoad: function () { 
+  onLoad: function () {
     this.getClassImg()
   },
   onReady: function () {
@@ -37,7 +37,7 @@ Page({
       title: 'loading'
     });
     this.searchTool = this.selectComponent('#searchTool');
-    this.getRecnetUpdate();
+    this.getAllImg();
   },
   showMoreDetail: function (e) {
     console.log(e);
@@ -49,29 +49,26 @@ Page({
     });
   },
 
+  showMoreImg(e) {
+    let imgarr = JSON.stringify(e.target.dataset.imgarr);
+    tt.navigateTo({
+      url: `/pages/list/list?imgarr=${imgarr}`
+    });
+  },
   /**
    * 获取近期更新
    */
-  getRecnetUpdate: function () {
+  getAllImg: function () {
     api.get(api.SERVER_PATH + api.IMGS).then(res => {
-      res.data.forEach(it => {
-        it.imgUrl = it.img    // `http://qcloudtest-1256295337.file.myqcloud.com${it.imgUrl.slice(47)}`;
-      });
-      tt.setStorageSync("all_img", res.data);
-      api.get(api.SERVER_PATH + api.HOT_SERIRS).then(res => {
-        tt.hideLoading();
-        let allData = tt.getStorageSync('all_img');
-        res.data.forEach(it => {
-          it.imgArr = utils.getImgsdir(it.imgs, allData);
-          it.url = utils.getImgsdir([it.img_id], allData)[0];
-        });
-        res.data = res.data.reverse();
-        this.setData({
-          allImgData: res.data,
-          recentUpdate: res.data.slice(4, 24),
-          todayUpdate: res.data.slice(0, 4)
-        });
-      });
+      //tt.setStorageSync("all_img", res.data)
+      this.setData({
+        emoticon: res.data.filter(item => item.classify_id === 1),
+        headPortrait: res.data.filter(item => item.classify_id === 2),
+        backgroundImage: res.data.filter(item => item.classify_id === 3),
+        wallpaper: res.data.filter(item => item.classify_id === 4),
+        allImgData: res.data
+      })
+      tt.hideLoading();
     });
   },
 
@@ -90,7 +87,8 @@ Page({
   */
   onShareAppMessage: function () { },
   onPullDownRefresh: function () { },
-  lower: function (e) {
+  onReachBottom: function () {
+    console.log('下拉刷新')
     let allImgData = this.data.allImgData;
     console.log(this.data.recentUpdate);
     console.log(allImgData.slice(this.data.updateImg, this.data.updateImg + 20));
@@ -102,10 +100,5 @@ Page({
   },
   openSearch: function () {
     this.searchTool.gotoSearch();
-  },
-  seekExpression: function () {
-    tt.navigateTo({
-      url: '/pages/seekExpression/seekExpression'
-    });
   }
 });
