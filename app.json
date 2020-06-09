@@ -11,34 +11,28 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffda44",
+    "navigationBarBackgroundColor": "#ffd600",
     "navigationBarTitleText": "表情兔",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
   "tabBar": {
-    "color": "#303133",
-    "selectedColor": "#303133",
+    "color": "#bfbfbf",
+    "selectedColor": "#ffd600",
     "borderStyle": "black",
     "backgroundColor": "#fff",
     "list": [
       {
-        "text": "近期更新",
+        "text": "首页",
         "pagePath": "pages/index/index",
-        "iconPath": "images/tabBar/update.png",
-        "selectedIconPath": "images/tabBar/update-select.png"
-      },
-      {
-        "text": "收藏",
-        "pagePath": "pages/collect/collect",
-        "iconPath": "images/tabBar/all.png",
-        "selectedIconPath": "images/tabBar/all-select.png"
+        "iconPath": "images/tabBar/home.png",
+        "selectedIconPath": "images/tabBar/home-select.png"
       },
       {
         "text": "我的",
-        "pagePath": "pages/person/person",
-        "iconPath": "images/tabBar/collect.png",
-        "selectedIconPath": "images/tabBar/collect-select.png"
+        "pagePath": "pages/collect/collect",
+        "iconPath": "images/tabBar/mine.png",
+        "selectedIconPath": "images/tabBar/mine-select.png"
       }
     ]
   },

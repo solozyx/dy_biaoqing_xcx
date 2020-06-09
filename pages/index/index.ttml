@@ -3,7 +3,6 @@
 	<image src="../../images/banner.jpg" mode="scaleToFill" class='banner' />
 </view>
 <search-tool bind:gotoSearch='openSearch' id='searchTool'></search-tool>
-<view class='dis-line'></view>
 <view class="recent_content">
 	<!-- <view class="tody_update">今日更新</view>
 		<view class="img-container">
@@ -14,7 +13,7 @@
 		</view> -->
 	<scroll-view class="recent_container">
 		<view class="emoticon border-line-class">
-			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>表情包</view>
+			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>热门表情</view>
 			<view class='show_more' bindtap="showMoreImg" data-imgarr='{{emoticon}}'>查看更多</view>
 		</view>
 		<view class="img-container">
@@ -25,7 +24,7 @@
 		</view>
     <view class='dis-line'></view>
 		<view class="head-portrait border-line-class">
-			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>头像</view>
+			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>热门头像</view>
 			<view class='show_more' bindtap="showMoreImg" data-imgarr='{{headPortrait}}'>查看更多</view>
 		</view>
 		<view class="img-container">
@@ -36,7 +35,7 @@
 		</view>
     <view class='dis-line'></view>
 		<view class="background-image border-line-class">
-			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>背景图</view>
+			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>热门背景</view>
 			<view class='show_more' bindtap="showMoreImg" data-imgarr={{backgroundImage}}>查看更多</view>
 		</view>
 		<view class="img-container">
@@ -47,7 +46,7 @@
 		</view>
     <view class='dis-line'></view>
 		<view class="wallpaper border-line-class">
-			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>壁纸</view>
+			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>热门壁纸</view>
 			<view class='show_more' bindtap="showMoreImg" data-imgarr={{wallpaper}}>查看更多</view>
 		</view>
 		<view class="img-container">
