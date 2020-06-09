@@ -14,8 +14,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    let itemClass = options.type==='backgroundImage'||options.type==='wallpaper'?'long-img-item ':'img-item'
+    console.log(JSON.parse(options.imgarr)[0])
+    let isLongType = JSON.parse(options.imgarr)[0].classify_id === 3 || JSON.parse(options.imgarr)[0].classify_id === 4
+    let itemClass = isLongType ? 'long-img-item ' : 'img-item'
     this.setData({
       listData: JSON.parse(options.imgarr),
       itemClass: itemClass
@@ -56,12 +57,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () { },
-  showMoreImg: function (e) {
-    let ids = e.currentTarget.dataset.imgs;
-    let imgs = utils.getImgs(ids);
-    tt.setStorageSync("xilie", imgs);
+  showMoreDetail: function (e) {
+    let imgItem = JSON.stringify(e.target.dataset.item);
     tt.navigateTo({
-      url: '/pages/imagePanel/imagePanel?imgs=' + imgs
+      url: '/pages/imagePanel/imagePanel?imgItem=' + imgItem
     });
   }
 });

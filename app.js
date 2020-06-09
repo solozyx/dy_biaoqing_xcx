@@ -24,13 +24,10 @@ App({
             success: res => {
               console.log(res)
               // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
+
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               this.getInfo(res, code)
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
             }
           })
         } else {
@@ -47,9 +44,7 @@ App({
                   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                   // 所以此处加入 callback 以防止这种情况
                   this.getInfo(res, code)
-                  if (this.userInfoReadyCallback) {
-                    this.userInfoReadyCallback(res)
-                  }
+
                 }
               })
             }
@@ -67,8 +62,11 @@ App({
         code
       },
       method: 'get',
-      success(res1) {
-        console.log(res1)
+      success: res1 => {
+        this.globalData.userInfo = res1.data
+        if (this.userInfoReadyCallback) {
+          this.userInfoReadyCallback(res1.data)
+        }
       },
       fail(res) {
         console.log(`request调用失败`);

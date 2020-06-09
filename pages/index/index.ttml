@@ -14,38 +14,38 @@
 	<scroll-view class="recent_container">
 		<view class="emoticon">
 			<view class="classify-title">表情包</view>
-			<view class='show_more' bindtap="showMoreImg" data-imgarr='{{emoticon}}' data-type='emoticon'>查看更多</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr='{{emoticon}}'>查看更多</view>
 		</view>
 		<view class="img-container">
 			<block tt:for="{{emoticon}}" tt:for-item="item" tt:for-index="itemIdx">
-				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<8}}'></image>
+				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<8}}'></image>
 			</block>
 		</view>
 		<view class="head-portrait">
 			<view class="classify-title">头像</view>
-			<view class='show_more' bindtap="showMoreImg" data-imgarr='{{headPortrait}}' data-type='headPortrait'>查看更多</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr='{{headPortrait}}'>查看更多</view>
 		</view>
 		<view class="img-container">
 			<block tt:for="{{headPortrait}}" tt:for-item="item" tt:for-index="itemIdx">
-				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<8}}'></image>
+				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<8}}'></image>
 			</block>
 		</view>
 		<view class="background-image">
 			<view class="classify-title">背景图</view>
-			<view class='show_more' bindtap="showMoreImg" data-imgarr={{backgroundImage}} data-type='backgroundImage'>查看更多</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr={{backgroundImage}}>查看更多</view>
 		</view>
 		<view class="img-container">
 			<block tt:for="{{backgroundImage}}" tt:for-item="item" tt:for-index="itemIdx">
-				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<8}}'></image>
+				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<8}}'></image>
 			</block>
 		</view>
 		<view class="wallpaper">
 			<view class="classify-title">壁纸</view>
-			<view class='show_more' bindtap="showMoreImg" data-imgarr={{wallpaper}} data-type='wallpaper'>查看更多</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr={{wallpaper}}>查看更多</view>
 		</view>
 		<view class="img-container">
 			<block tt:for="{{wallpaper}}" tt:for-item="item" tt:for-index="itemIdx">
-				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item-long" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<4}}'></image>
+				<image bindtap="showMoreDetail" data-item="{{item}}"  class="img-item-long {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item.img}}" mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<4}}'></image>
 			</block>
 		</view>
 		<view class='contact-container'>
@@ -53,7 +53,7 @@
 		</view>
 		<view class="recent-img-container">
 			<block tt:for="{{recentUpdate}}" tt:for-item="item" tt:for-index="itemIdx">
-				<image bindtap="showMoreDetail" data-item="{{item}}"  class="recent-img-item {{(itemIdx+1)%3==0?'lastIndex':''}}" src="{{item.img}}" mode="scaleToFill"
+				<image bindtap="showMoreDetail" class="recent-img-item {{(itemIdx+1)%3==0?'lastIndex':''}}" src="{{item.img}}" mode="scaleToFill" data-item="{{item}}"
 				 lazy-load="true"></image>
 			</block>
 		</view>

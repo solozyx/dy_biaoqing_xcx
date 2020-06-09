@@ -1,6 +1,7 @@
 /**index.ttss**/
 .banner-content{
   width: 100%;
+  z-index: 100;
 }
 .banner{
   width: 100%;
@@ -11,6 +12,7 @@
 }
 
 .recent_content {
+  margin-top: 1rem;
   height: 110%;
 }
 
@@ -77,34 +79,35 @@
 }
 
 .img-item {
-  width: 25%;
-  height: 4.5rem;
-  padding-right: 5px;
+  width: calc(25% - 4px);
+  height:calc(25VW - 4px);
+  margin-right: 5px;
   box-sizing: border-box;
   border-radius: 5px;
 }
 .img-item-long{
-  width: 25%;
-  height: 8rem;
-  padding-right: 5px;
+  width: calc(25% - 4px);
+  height:calc(50VW - 4px);
+  margin-right: 5px;
   box-sizing: border-box;
   border-radius: 5px;
 }
 
 .img-item:last-child ,.img-item-long:last-child {
-  padding-right: 0;
+  margin-right: 0;
 }
 
 .recent-img-item {
-  width: 33.3%;
-  height: 5rem;
-  padding-bottom: 5px;
-  padding-right: 5px;
+  width: calc(33.3% - 7px);
+  height:calc(33VW - 7px);
+  margin-bottom: 10px;
+  margin-right: 10px;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .lastIndex {
-  padding-right: 0;
+  margin-right: 0;
 }
 
 .contact-container {
@@ -144,6 +147,5 @@
 }
 .show_more::after{
   content: '＞';
-  font-size: 0.7rem;
   color: #969595;
 }

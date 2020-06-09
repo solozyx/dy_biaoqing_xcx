@@ -15,20 +15,20 @@ const formatNumber = n => {
 
 const getImgs = function (ids) {
   let arrId = (ids + "").split(",");
-  return tt.getStorageSync('all_img').filter(it => ~arrId.indexOf(it.img_id + "")).map(it => it.imgUrl);
+  return tt.getStorageSync('all_img').filter(it => ~arrId.indexOf(it.img_id + "")).map(it => it.img);
 };
 
 const getImgsdir = function (ids, all_img) {
   let arrId = (ids + "").split(",");
-  return all_img.filter(it => ~arrId.indexOf(it.img_id + "")).map(it => it.imgUrl);
+  return all_img.filter(it => ~arrId.indexOf(it.img_id + "")).map(it => it.img);
 };
 
 const getIdsdir = function (urls, all_img) {
-  return all_img.filter(it => ~urls.indexOf(it.imgUrl)).map(it => it.img_id);
+  return all_img.filter(it => ~urls.indexOf(it.img)).map(it => it.img_id);
 };
 
 const getIds = function (urls) {
-  return tt.getStorageSync('all_img').filter(it => ~urls.indexOf(it.imgUrl)).map(it => it.img_id);
+  return tt.getStorageSync('all_img').filter(it => ~urls.indexOf(it.img)).map(it => it.img_id);
 };
 
 const flashCollect = function (urls) {};

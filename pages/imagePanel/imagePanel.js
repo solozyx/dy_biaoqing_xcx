@@ -23,12 +23,31 @@ Page({
     this.setData({
       selectUrl: imgItem.img
     })
+    if (app.globalData.userInfo && app.globalData.userInfo.openId) {
+      this.setData({
+        openId: app.globalData.userInfo.openId
+      })
+      console.log(imgItem.img_id, app.globalData.userInfo.openId)
+      this.getCollectImg(imgItem.img_id, app.globalData.userInfo.openId)
+    } else {
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          openId: res.openId
+        })
+        this.getCollectImg(imgItem.img_id, res.openId)
+      };
+    }
     if (imgItem.series_id) {
       api.get(api.SERVER_PATH + api.IMGS + `?series_id=${imgItem.series_id}`).then(res => {
+        console.log(res)
         this.setData({
-          imgData: res.data.map(item=>item.img)
+          imgData: res.data.map(item => item.img)
         })
       });
+    }else{
+      this.setData({
+          imgData: [imgItem.img]
+      })
     }
     console.log(imgItem)
   },
@@ -75,6 +94,17 @@ Page({
       fail: function (res) {// 转发失败
       }
     };
+  },
+
+  getCollectImg(imgId, openId) {
+    api.get(api.SERVER_PATH + api.COLLECT + `/${openId}`).then((res) => {
+      wx.setStorageSync("collect_img", res.data)
+      this.isCollect(imgId, isc => {
+        this.setData({
+          isCollect: isc
+        });
+      });
+    })
   },
 
   /**

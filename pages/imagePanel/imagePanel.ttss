@@ -48,7 +48,7 @@
 .collect, .share ,.zs{
   display: flex;
   font-size: 0.9rem;
-  width: 33.3%;
+  width: 50%;
   float: left;
   align-items: center;
   justify-content: center;
@@ -78,7 +78,7 @@
 }
 
 .imge_wrap {
-  margin-top: 13rem;
+  margin-top: 11rem;
 }
 .more-game {
   font-size: 0.8rem;

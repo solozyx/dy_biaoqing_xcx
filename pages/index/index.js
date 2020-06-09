@@ -48,9 +48,8 @@ Page({
 
   showMoreImg(e) {
     let imgarr = JSON.stringify(e.target.dataset.imgarr);
-    let type = e.target.dataset.type;
     tt.navigateTo({
-      url: `/pages/list/list?imgarr=${imgarr}&type=${type}`
+      url: `/pages/list/list?imgarr=${imgarr}`
     });
   },
   /**
@@ -58,7 +57,7 @@ Page({
    */
   getAllImg: function () {
     api.get(api.SERVER_PATH + api.IMGS).then(res => {
-      //tt.setStorageSync("all_img", res.data)
+      tt.setStorageSync("all_img", res.data)
       this.setData({
         emoticon: res.data.filter(item => item.classify_id === 1),
         headPortrait: res.data.filter(item => item.classify_id === 2),
@@ -86,6 +85,7 @@ Page({
   onShareAppMessage: function () { },
   onPullDownRefresh: function () { },
   onReachBottom: function () {
+    console.log('下拉刷新')
     let allImgData = this.data.allImgData;
     console.log(this.data.recentUpdate);
     console.log(allImgData.slice(this.data.updateImg, this.data.updateImg + 20));
