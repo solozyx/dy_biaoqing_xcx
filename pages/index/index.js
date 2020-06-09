@@ -3,6 +3,7 @@
 import api from '../../utils/api.js';
 import utils from '../../utils/util.js';
 const app = getApp();
+
 Page({
   data: {
     index: 1,

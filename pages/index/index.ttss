@@ -1,4 +1,5 @@
 /**index.ttss**/
+@import '/assets/fonts/iconfont.ttss';
 .banner-content{
   width: 100%;
   z-index: 100;
@@ -7,12 +8,11 @@
   width: 100%;
   height: 8rem;
 }
-.recent_container {
-  margin-top: 10px;
+.icon-title {
+  color: #fa2840;
 }
 
 .recent_content {
-  margin-top: 1rem;
   height: 110%;
 }
 
@@ -73,11 +73,6 @@
   padding-right: 20px;
 }
 
-.recent_update {
-  float: left;
-  padding-bottom: 10px;
-}
-
 .img-item {
   width: calc(25% - 4px);
   height:calc(25VW - 4px);
@@ -112,6 +107,7 @@
 
 .contact-container {
   overflow: hidden;
+  padding: 8px;
 }
 
 .contact {
@@ -148,4 +144,11 @@
 .show_more::after{
   content: '＞';
   color: #969595;
+}
+.dis-line{
+  height: 8px;
+  background: #f1f1f1;
+}
+.border-line-class{
+  border-bottom: 1px solid #f1f1f1;
 }

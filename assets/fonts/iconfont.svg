@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="jiarehuoyan" unicode="&#59299;" d="M789.1 637.3C666 602.3 643.6 503 652 440c-88.2 103.5-84 221.1-84 391.8C286.7 725.4 352.5 420.4 344.1 328c-70 57.4-84 195.9-84 195.9C186 486.1 148.2 382.6 148.2 300c0-201.5 162.3-363.8 363.8-363.8S875.8 98.5 875.8 300c0 119-88.1 175-86.7 337.3z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

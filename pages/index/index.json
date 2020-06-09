@@ -2,5 +2,6 @@
   "usingComponents": {
     "search-tool": "/components/search_tool/searchTool"
   },
-  "onReachBottomDistance": 50
+  "onReachBottomDistance": 50,
+  "enablePullDownRefresh": false
 }
