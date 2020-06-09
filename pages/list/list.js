@@ -14,12 +14,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(JSON.parse(options.imgarr)[0])
-    let isLongType = JSON.parse(options.imgarr)[0].classify_id === 3 || JSON.parse(options.imgarr)[0].classify_id === 4
-    let itemClass = isLongType ? 'long-img-item ' : 'img-item'
-    this.setData({
-      listData: JSON.parse(options.imgarr),
-      itemClass: itemClass
+    api.get(api.SERVER_PATH + api.CLASSIFY).then(res => {
+      let classifyArr = res.data.map(item => item.classify_id)
+      console.log(classifyArr)
+      let isLongType = JSON.parse(options.imgarr)[0].classify_id === classifyArr[2] || JSON.parse(options.imgarr)[0].classify_id === classifyArr[3]
+      console.log(isLongType)
+      let itemClass = isLongType ? 'long-img-item ' : 'img-item'
+      this.setData({
+        listData: JSON.parse(options.imgarr),
+        itemClass: itemClass
+      })
     })
   },
 

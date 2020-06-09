@@ -26,7 +26,7 @@ Page({
     });
   },
   onLoad: function () {
-    this.getClassImg()
+    // this.getClassImg()
   },
   onReady: function () {
     var res = tt.getSystemInfoSync();
@@ -59,13 +59,17 @@ Page({
   getAllImg: function () {
     api.get(api.SERVER_PATH + api.IMGS).then(res => {
       tt.setStorageSync("all_img", res.data)
-      this.setData({
-        emoticon: res.data.filter(item => item.classify_id === 1),
-        headPortrait: res.data.filter(item => item.classify_id === 2),
-        backgroundImage: res.data.filter(item => item.classify_id === 3),
-        wallpaper: res.data.filter(item => item.classify_id === 4),
-        allImgData: res.data
-      })
+      api.get(api.SERVER_PATH + api.CLASSIFY).then(res1 => {
+        let classifyArr = res1.data.map(item => item.classify_id)
+        this.setData({
+          emoticon: res.data.filter(item => item.classify_id === classifyArr[0]),
+          headPortrait: res.data.filter(item => item.classify_id === classifyArr[1]),
+          backgroundImage: res.data.filter(item => item.classify_id === classifyArr[2]),
+          wallpaper: res.data.filter(item => item.classify_id === classifyArr[3]),
+          allImgData: res.data
+        })
+        cososle.log(this.data)
+      });
       tt.hideLoading();
     });
   },
