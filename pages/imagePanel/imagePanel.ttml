@@ -12,9 +12,9 @@
 		<i class="iconfont icon-btn {{isCollect?'iconshoucangxingxing':'iconshoucangxingxing-xianxing'}}"></i>
     <text class="collect_text">{{isCollect?"已收藏":"收藏"}}</text>
   </view>
-   <view class="zs" bindtap='gotozs'>
+   <view class="zs" bindtap="beforeSave">
     <i class="iconfont icon-btn icondownload"></i>
-    <text class="share_text">保存</text>
+    <text class="share_text" >保存</text>
   </view>
 </view>
 </view>

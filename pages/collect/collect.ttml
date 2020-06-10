@@ -1,9 +1,21 @@
 <!--pages/collect/collect.ttml-->
 <view class="avatar-container">
-  <view class="userinfo">
-    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
+	<view class="userinfo">
+		<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+		<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+	</view>
+</view>
+<view class='concat-button-wrap'>
+  <button open-type="contact" class='recharge-content'  session-from='{"nickName":"{{userInfo.nickName}}","avatarUrl":"{{userInfo.avatarUrl}}"}'>
+        <view class='left-content'>
+          <image src='../../images/kefu.png' class='icon-img'></image>
+          <text>客服</text>
+        </view>
+        <view class='re-right-content'>
+        <text >回复“1”</text>
+        <image src='../../images/arrow-right.png' class='icon-img'></image>
+        </view>
+</button>
 </view>
 <block tt:if="{{collectData.length>0}}">
 <scroll-view class="collect-img-container">

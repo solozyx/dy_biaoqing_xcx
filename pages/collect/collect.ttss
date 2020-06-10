@@ -12,7 +12,7 @@
   justify-content: space-between;
   padding: 40rpx 0;
   box-sizing: border-box;
-  background: url("http://www.moepan.net/uploads/201803239334223428108.jpg") no-repeat;
+  background: #ffd600;
   background-size: 100% 100%;
 }
 
@@ -36,7 +36,6 @@
 .collect-img-container {
   padding: 8px;
   box-sizing: border-box;
-  padding-top: 340rpx;
 }
 
 .img-item {
@@ -74,4 +73,40 @@
   font-size: 0.7rem;
   color: #C0C4CC;
   padding: 600rpx 0;
+}
+.recharge-content {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 0.8rem;
+  background: #fff;
+  padding: 0 20rpx;
+  border-radius: 0;
+  border-bottom: 1px solid #fafafa;
+  border-top: 1px solid #fafafa;
+}
+
+.recharge-content::after {
+  border: 0; 
+}
+.re-right-content {
+  display: flex;
+  align-items: center;
+  float: right;
+}
+.left-content {
+  display: flex;
+  align-items: center;
+  float: left;
+}
+.icon-img {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+.re-right-content text {
+  font-size: 0.7rem;
+  color:#ffda44;
+}
+.concat-button-wrap{
+  padding-top: 300rpx;
 }

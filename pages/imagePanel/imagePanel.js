@@ -12,7 +12,8 @@ Page({
     selectUrl: '',
     isCollect: false,
     imgData: [],
-    openId: ''
+    openId: '',
+    percent_n: 0
   },
 
   /**
@@ -44,9 +45,9 @@ Page({
           imgData: res.data.map(item => item.img)
         })
       });
-    }else{
+    } else {
       this.setData({
-          imgData: [imgItem.img]
+        imgData: [imgItem.img]
       })
     }
     console.log(imgItem)
@@ -97,7 +98,7 @@ Page({
   },
 
   getCollectImg(imgId, openId) {
-    api.get(api.SERVER_PATH + api.COLLECT + `/${openId}`).then((res) => {
+    api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then((res) => {
       wx.setStorageSync("collect_img", res.data)
       this.isCollect(imgId, isc => {
         this.setData({
@@ -173,16 +174,14 @@ Page({
     obj.img_id = utils.getIds([this.data.selectUrl])[0];
 
     if (this.data.isCollect) {
-      api.delete(api.SERVER_PATH + api.COLLECT + `/${openId}`, {
-        img_id: obj.img_id
-      }).then(res => {
+      api.delete(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}&img_id=${obj.img_id}`).then(res => {
         tt.showToast({
           title: '已取消收藏'
         });
         this.setData({
           isCollect: false
         });
-        api.get(api.SERVER_PATH + api.COLLECT + `/${openId}`).then(res => {
+        api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then(res => {
           tt.setStorageSync("collect_img", res.data);
         });
       });
@@ -197,7 +196,7 @@ Page({
         console.log(res.data == "success");
 
         if (res.data == "success") {
-          api.get(api.SERVER_PATH + api.COLLECT + `/${openId}`).then(res => {
+          api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then(res => {
             tt.setStorageSync("collect_img", res.data);
           });
         }
@@ -214,5 +213,129 @@ Page({
       current: url,
       urls: [url]
     });
+  },
+  beforeSave() {
+    let videoAd = tt.createRewardedVideoAd({
+      adUnitId: '2632m76gpedf5i5952'
+    })
+    // 显示广告
+    videoAd
+      .show()
+      .then(() => {
+        console.log("广告显示成功");
+      })
+      .catch(err => {
+        console.log("广告组件出现问题", err);
+        // 可以手动加载一次
+        videoAd.load().then(() => {
+          console.log("手动加载成功");
+          // 加载成功后需要再显示广告
+          return videoAd.show();
+        });
+      });
+    videoAd.onClose(res => {
+      if (res.isEnded) {
+        // 给予奖励
+      }
+    });
+  },
+  saveImgs() {
+    let that = this
+    let imgs = this.data.imgData
+    var all_n = imgs.length
+    tt.authorize({
+      scope: 'scope.writePhotosAlbum',
+      success() {
+        tt.showToast(
+          {
+            title: '下载中...',
+            icon: 'loading'
+          }
+        )
+        for (let i = 0, j = 1; i < all_n; i++ , j++) {
+          that.dow_temp(imgs[i], j, all_n, (text) => {
+            if (text == 100) {
+              tt.showLoading({
+                title: j + '/' + all_n + '下载中',
+                duration: 10000
+              })
+              if (j == all_n) {
+                tt.showToast({
+                  title: '下载完成',
+                  duration: 1000
+                })
+              }
+            } else {
+              tt.showToast({
+                title: '下载失败',
+              })
+            }
+          })
+        }
+      },
+      fail() {
+        tt.showModal({
+          title: '温馨提示',
+          content: '小主，下载图片，需允许授权相册权限~',
+          success(res) {
+            if (res.confirm) {
+              tt.openSetting({
+                success(res) {
+                  console.log(res.authSetting)
+                }
+              })
+            }
+          }
+        })
+      }
+    })
+  },
+  dow_temp: function (str, i, all_n, callback) {
+    var that = this;
+    tt.authorize({
+      scope: 'scope.writePhotosAlbum',
+      success() {
+        // 用户已经同意小程序使
+        const downloadTask = wx.downloadFile({
+          url: str,
+          success: function (res) {
+            var temp = res.tempFilePath
+            tt.saveImageToPhotosAlbum({
+              filePath: temp,
+              success: function () { },
+              fail: function () {
+                tt.showToast({
+                  title: '第' + i + '下载失败',
+                })
+              }
+            })
+          },
+          fail: function (res) {
+            tt.showToast({
+              title: '下载失败',
+            })
+          }
+        })
+
+        downloadTask.onProgressUpdate((res) => {
+          if (res.progress == 100) {
+            callback(res.progress);
+            var count = that.data.percent_n; //统计下载多少次了
+            that.setData({
+              percent_n: count + 1
+            })
+            if (that.data.percent_n == all_n) { //判断是否下载完成
+              that.setData({ //完成后，清空percent-N,防止多次下载后，出错
+                percent_n: 0
+              })
+            }
+          }
+        })
+
+      },
+      fail: function () {
+
+      }
+    })
   }
 });

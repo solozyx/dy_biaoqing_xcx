@@ -50,7 +50,7 @@ Page({
       // let openId = app.globalData.userInfo.openId
       if (app.globalData.userInfo && app.globalData.userInfo.openId) {
         let openId = app.globalData.userInfo.openId;
-        api.get(api.SERVER_PATH + api.COLLECT + `/${openId}`).then(res => {
+        api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then(res => {
           tt.setStorageSync("collect_img", res.data);
           collectImgObj = res.data;
           tt.hideLoading();
@@ -144,13 +144,11 @@ Page({
             break;
 
           case 1:
-            api.delete(api.SERVER_PATH + api.COLLECT + `/${openId}`, {
-              img_id: img_id
-            }).then(res => {
+            api.delete(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}&img_id=${img_id}`).then(res => {
               tt.showToast({
                 title: '已取消收藏'
               });
-              api.get(api.SERVER_PATH + api.COLLECT + `/${openId}`).then(res => {
+              api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then(res => {
                 tt.setStorageSync("collect_img", res.data);
                 let ids = res.data.map(it => it.img_id);
                 let imgs = util.getImgs(ids);
