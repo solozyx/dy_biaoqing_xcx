@@ -43,14 +43,15 @@ Page({
   showMoreDetail: function (e) {
     let imgItem = JSON.stringify(e.target.dataset.item);
     tt.navigateTo({
-      url: '/pages/imagePanel/imagePanel?imgItem=' + imgItem
+      url: `/pages/imagePanel/imagePanel?imgItem=${imgItem}` 
     });
   },
 
   showMoreImg(e) {
     let imgarr = JSON.stringify(e.target.dataset.imgarr);
+    let type = e.target.dataset.type;
     tt.navigateTo({
-      url: `/pages/list/list?imgarr=${imgarr}`
+      url: `/pages/list/list?imgarr=${imgarr}&type=${type}`
     });
   },
   /**

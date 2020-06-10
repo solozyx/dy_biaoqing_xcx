@@ -12,7 +12,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffd600",
-    "navigationBarTitleText": "表情兔",
+    "navigationBarTitleText": "快兔表情",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },

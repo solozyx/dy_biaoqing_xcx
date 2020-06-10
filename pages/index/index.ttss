@@ -1,5 +1,4 @@
 /**index.ttss**/
-@import '/assets/fonts/iconfont.ttss';
 .banner-content{
   width: 100%;
   z-index: 100;
@@ -16,9 +15,8 @@
   height: 110%;
 }
 
-.tody_update, .recent_update, .more-game {
+.recent_update {
   padding-left: 8px;
-  font-size: 0.8rem;
 }
 
 .more-game {
@@ -44,17 +42,6 @@
   margin-right: 5px;
 }
 
-.recent_update::before {
-  position: relative;
-  display: inline-block;
-  top: 5px;
-  content: '';
-  background: url('http://qcloudtest-1256295337.cosgz.myqcloud.com/imgs/1524468586469-r1Mdibj3G.png');
-  background-size: contain;
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-}
 
 .more-game::before {
   position: relative;

@@ -14,16 +14,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    api.get(api.SERVER_PATH + api.CLASSIFY).then(res => {
-      let classifyArr = res.data.map(item => item.classify_id)
-      console.log(classifyArr)
-      let isLongType = JSON.parse(options.imgarr)[0].classify_id === classifyArr[2] || JSON.parse(options.imgarr)[0].classify_id === classifyArr[3]
-      console.log(isLongType)
-      let itemClass = isLongType ? 'long-img-item ' : 'img-item'
-      this.setData({
-        listData: JSON.parse(options.imgarr),
-        itemClass: itemClass
-      })
+    let obj = {
+      emoticon: '热门表情包', // 表情包
+      headPortrait: '热门头像',//头像
+      backgroundImage: '热门背景',//背景图
+      wallpaper: '热门壁纸'
+    }
+    tt.setNavigationBarTitle({
+      title: obj[options.type]
+    })
+    let isLongType = options.type==='wallpaper'
+    console.log(isLongType)
+    let itemClass = isLongType ? 'long-img-item ' : 'img-item'
+    this.setData({
+      listData: JSON.parse(options.imgarr),
+      itemClass: itemClass
     })
   },
 
