@@ -92,12 +92,10 @@ Page({
   onReachBottom: function () {
     console.log('下拉刷新')
     let allImgData = this.data.allImgData;
-    console.log(this.data.recentUpdate);
-    console.log(allImgData.slice(this.data.updateImg, this.data.updateImg + 20));
-    if (this.data.updateImg + 20 > allImgData.length) return;
+    if (this.data.updateImg > allImgData.length) return;
     this.setData({
-      recentUpdate: this.data.recentUpdate.concat(allImgData.slice(this.data.updateImg, this.data.updateImg + 20)),
-      updateImg: this.data.updateImg + 20
+      recentUpdate: this.data.recentUpdate.concat(allImgData.slice(this.data.updateImg, this.data.updateImg + 10)),
+      updateImg: this.data.updateImg + 10
     });
   },
   openSearch: function () {

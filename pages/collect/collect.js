@@ -36,7 +36,7 @@ Page({
     console.log(666)
     this.getCollectImg()
   },
- 
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -116,7 +116,7 @@ Page({
       }
     });
   },
-  getCollectImg:function(){
+  getCollectImg: function () {
     var that = this
     tt.showLoading({
       title: 'loading'
@@ -181,6 +181,21 @@ Page({
                 withCredentials: true,
                 success: res => {
                   this.getInfo(res, code)
+                }
+              })
+            },
+            fail: res => {
+              wx.showModal({
+                title: '温馨提示',
+                content: '小主，登录小程序，需允许授权用户信息~',
+                success(res) {
+                  if (res.confirm) {
+                    wx.openSetting({
+                      success(res) {
+                        console.log(res.authSetting)
+                      }
+                    })
+                  }
                 }
               })
             }
