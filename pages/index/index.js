@@ -26,7 +26,6 @@ Page({
     });
   },
   onLoad: function () {
-    // this.getClassImg()
   },
   onReady: function () {
     var res = tt.getSystemInfoSync();

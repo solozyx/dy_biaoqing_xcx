@@ -9,12 +9,16 @@
     <text class="share_text">分享</text>
   </view> -->
 		<view class="collect" bindtap='collectImg'>
-		<i class="iconfont icon-btn {{isCollect?'iconshoucangxingxing':'iconshoucangxingxing-xianxing'}}"></i>
+			<i class="iconfont icon-btn {{isCollect?'iconshoucangxingxing':'iconshoucangxingxing-xianxing'}}"></i>
     <text class="collect_text">{{isCollect?"已收藏":"收藏"}}</text>
   </view>
-   <view class="zs" bindtap="beforeSave">
+  <view class="share" bindtap='beforeSave'>
     <i class="iconfont icon-btn icondownload"></i>
-    <text class="share_text" >保存</text>
+    <text class="share_text">保存</text>
+  </view>
+  <view class="zs" bindtap='gotoHome'>
+    <i class="iconfont icon-btn icongengduo-2"></i>
+    <text class="share_text">更多</text>
   </view>
 </view>
 </view>

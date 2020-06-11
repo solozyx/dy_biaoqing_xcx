@@ -9,7 +9,8 @@ Page({
    */
   data: {
     userInfo: {},
-    collectData: []
+    collectData: [],
+    hasUserInfo: false
   },
 
   /**
@@ -17,76 +18,30 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    tt.showLoading({
-      title: 'loading'
-    });
-
     if (app.globalData.userInfo) {
       that.setData({
-        userInfo: app.globalData.userInfo
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
       });
+    } else if (app.userInfoReadyCallback) {
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res,
+          hasUserInfo: true
+        })
+      };
     } else {
-      tt.getUserInfo({
-        success(res) {
-          that.setData({
-            userInfo: res.userInfo
-          });
-        }
-
-      });
+      return false
     }
-
-    let collectImgObj = {};
-
-    if (tt.getStorageSync("collect_img")) {
-      collectImgObj = tt.getStorageSync("collect_img");
-      tt.hideLoading();
-      let ids = collectImgObj.map(it => it.img_id);
-      let imgs = util.getImgs(ids);
-      that.setData({
-        collectData: imgs
-      });
-    } else {
-      // let openId = app.globalData.userInfo.openId
-      if (app.globalData.userInfo && app.globalData.userInfo.openId) {
-        let openId = app.globalData.userInfo.openId;
-        api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then(res => {
-          tt.setStorageSync("collect_img", res.data);
-          collectImgObj = res.data;
-          tt.hideLoading();
-          let ids = collectImgObj.map(it => it.img_id);
-          let imgs = util.getImgs(ids);
-          that.setData({
-            collectData: imgs
-          });
-        });
-      } else {
-        // qcloud.request({
-        //   url: api.SERVER_PATH + api.USER,
-        //   login: true,
-
-        //   success(res) {
-        //     api.get(api.SERVER_PATH + api.COLLECT + `/${res.data.data.openId}`).then(res => {
-        //       tt.setStorageSync("collect_img", res.data);
-        //       collectImgObj = res.data;
-        //       tt.hideLoading();
-        //       let ids = collectImgObj.map(it => it.img_id);
-        //       let imgs = util.getImgs(ids);
-        //       that.setData({
-        //         collectData: imgs
-        //       });
-        //     });
-        //   }
-
-        // });
-      }
-    }
+    console.log(666)
+    this.getCollectImg()
   },
+ 
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
@@ -106,27 +61,27 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
   openImg: function (e) {
     let url = e.target.dataset.url;
     var that = this;
@@ -160,5 +115,100 @@ Page({
         }
       }
     });
-  }
+  },
+  getCollectImg:function(){
+    var that = this
+    tt.showLoading({
+      title: 'loading'
+    });
+    let collectImgObj = {};
+    if (tt.getStorageSync("collect_img")) {
+      collectImgObj = tt.getStorageSync("collect_img");
+      tt.hideLoading();
+      let ids = collectImgObj.map(it => it.img_id);
+      let imgs = util.getImgs(ids);
+      that.setData({
+        collectData: imgs
+      });
+    } else {
+      // let openId = app.globalData.userInfo.openId
+      if (app.globalData.userInfo && app.globalData.userInfo.openId) {
+        let openId = app.globalData.userInfo.openId;
+        api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then(res => {
+          tt.setStorageSync("collect_img", res.data);
+          collectImgObj = res.data;
+          tt.hideLoading();
+          let ids = collectImgObj.map(it => it.img_id);
+          let imgs = util.getImgs(ids);
+          that.setData({
+            collectData: imgs
+          });
+        });
+      }
+    }
+  },
+  submitSign: function () {
+    this.login(this.getUserInfo)
+  },
+  login(cb) {
+    tt.login({
+      success(res) {
+        console.log('login', res);
+        cb(res.code)
+      },
+      fail(res) {
+        console.log(`login调用失败`);
+      }
+    });
+  },
+  getUserInfo(code) {
+    // 获取用户信息
+    tt.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          tt.getUserInfo({
+            withCredentials: true,
+            success: res => {
+              this.getInfo(res, code)
+            }
+          })
+        } else {
+          tt.authorize({
+            scope: 'scope.userInfo',
+            success: res => {
+              // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+              tt.getUserInfo({
+                withCredentials: true,
+                success: res => {
+                  this.getInfo(res, code)
+                }
+              })
+            }
+          })
+        }
+      }
+    });
+  },
+  getInfo(res, code) {
+    tt.request({
+      url: "https://dy.test97.com/weapp/login",
+      data: {
+        encryptedData: res.encryptedData,
+        iv: res.iv,
+        code
+      },
+      method: 'get',
+      success: res1 => {
+        this.setData({
+          userInfo: res1.data,
+          hasUserInfo: true
+        })
+        app.globalData.userInfo = res1.data
+        this.getCollectImg()
+      },
+      fail(res) {
+        console.log(`request调用失败`);
+      }
+    });
+  },
 });

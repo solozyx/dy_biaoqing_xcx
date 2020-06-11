@@ -51,7 +51,7 @@
 .collect, .share ,.zs{
   display: flex;
   font-size: 0.9rem;
-  width: 50%;
+  width: 33.3%;
   float: left;
   align-items: center;
   justify-content: center;
@@ -72,14 +72,10 @@
   height: 1.3rem;
 }
 .select_wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
+  
   background: #fff;
 }
 
 .imge_wrap {
-  margin-top: 11rem;
+ 
 }

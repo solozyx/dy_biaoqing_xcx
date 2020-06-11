@@ -12,7 +12,7 @@ Page({
     selectUrl: '',
     isCollect: false,
     imgData: [],
-    openId: '',
+    openId: null,
     percent_n: 0
   },
 
@@ -30,7 +30,7 @@ Page({
       })
       console.log(imgItem.img_id, app.globalData.userInfo.openId)
       this.getCollectImg(imgItem.img_id, app.globalData.userInfo.openId)
-    } else {
+    } else if (app.userInfoReadyCallback) {
       app.userInfoReadyCallback = res => {
         this.setData({
           openId: res.openId
@@ -165,6 +165,20 @@ Page({
     });
   },
   collectImg: function (e) {
+    if (!this.data.openId) {
+      tt.showModal({
+        title: '温馨提示',
+        content: '小主,请先登录小程序，才可以下载图片~',
+        success(res) {
+          if (res.confirm) {
+            tt.switchTab({
+              url: '/pages/collect/collect'
+            });
+          }
+        }
+      })
+     return false
+    }
     tt.showLoading({
       title: 'loading'
     });
@@ -214,30 +228,72 @@ Page({
       urls: [url]
     });
   },
-  beforeSave() {
-    let videoAd = tt.createRewardedVideoAd({
-      adUnitId: '2632m76gpedf5i5952'
-    })
-    // 显示广告
-    videoAd
-      .show()
-      .then(() => {
-        console.log("广告显示成功");
-      })
-      .catch(err => {
-        console.log("广告组件出现问题", err);
-        // 可以手动加载一次
-        videoAd.load().then(() => {
-          console.log("手动加载成功");
-          // 加载成功后需要再显示广告
-          return videoAd.show();
-        });
-      });
-    videoAd.onClose(res => {
-      if (res.isEnded) {
-        // 给予奖励
-      }
+  gotoHome: function () {
+    /*配置了tabbar的只能使用switchtab */
+    tt.switchTab({
+      url: '/pages/index/index'
     });
+  },
+  beforeSave() {
+    if (!this.data.openId) {
+      tt.showModal({
+        title: '温馨提示',
+        content: '小主,请先登录小程序，才可以下载图片~',
+        success(res) {
+          if (res.confirm) {
+            tt.switchTab({
+              url: '/pages/collect/collect'
+            });
+          }
+        }
+      })
+      return false
+    }
+    var dataStr = new Date().getTime()
+    if (tt.getStorageSync("collectTime") && tt.getStorageSync("collectTime") > dataStr) {
+      this.saveImgs()
+    } else {
+      tt.showModal({
+        title: '温馨提示',
+        content: '观看30s视频解锁下载图片~',
+        success(res) {
+          if (res.confirm) {
+            let videoAd = tt.createRewardedVideoAd({
+              adUnitId: '2632m76gpedf5i5952'
+            })
+            // 显示广告
+            videoAd
+              .show()
+              .then(() => {
+                console.log("广告显示成功");
+              })
+              .catch(err => {
+                tt.showToast({
+                  title: '广告组件出现问题~',
+                  icon: 'none',
+                  duration: 1000
+                })
+                // 可以手动加载一次
+                videoAd.load().then(() => {
+                  console.log("手动加载成功");
+                  // 加载成功后需要再显示广告
+                  return videoAd.show();
+                });
+              });
+            videoAd.onClose(res => {
+              if (res.isEnded) {
+                // 给予奖励
+                var data = new Date()
+                let timestr = data.setHours(data.getHours() + 3)
+                tt.setStorageSync("collectTime", timestr)
+              }
+            });
+          } else if (res.cancel) {
+            console.log("cancel, cold");
+          }
+        }
+      })
+    }
   },
   saveImgs() {
     let that = this

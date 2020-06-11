@@ -1,7 +1,6 @@
 /* pages/collect/collect.ttss */
 
 .avatar-container {
-  position: fixed;
   z-index: 9999;
   left: 0;
   right: 0;
@@ -72,41 +71,50 @@
 .no_data {
   font-size: 0.7rem;
   color: #C0C4CC;
-  padding: 600rpx 0;
+  padding: 300rpx 0;
 }
 .recharge-content {
-  height: 3rem;
-  line-height: 3rem;
-  font-size: 0.8rem;
-  background: #fff;
-  padding: 0 20rpx;
-  border-radius: 0;
-  border-bottom: 1px solid #fafafa;
-  border-top: 1px solid #fafafa;
+  position: fixed;
+  z-index: 9999;
+  right:20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  font-size: 0.6rem;
+  background: #ffff;
+}
+.icon-btn{
+  font-size: 1.6rem;
+  height: 2.5rem;
+  padding: 0;
+  margin: 0;
+}
+.recharge-content::after{
+  border:0;
+}
+.getUserInfo{
+  text-align:center;
+}
+.getUserInfo image{
+    width:160rpx;
+    height:160rpx;
+    margin:auto;
+    border-radius:20rpx;
+    margin:30rpx 0;
+}
+.getUserInfo .text{
+    font-size:30rpx;
+    margin-bottom:30rpx;
 }
 
-.recharge-content::after {
-  border: 0; 
-}
-.re-right-content {
-  display: flex;
-  align-items: center;
-  float: right;
-}
-.left-content {
-  display: flex;
-  align-items: center;
-  float: left;
-}
-.icon-img {
-  width: 40rpx;
-  height: 40rpx;
-  margin-right: 10rpx;
-}
-.re-right-content text {
-  font-size: 0.7rem;
-  color:#ffda44;
-}
-.concat-button-wrap{
-  padding-top: 300rpx;
+.getUserInfo button{
+    background:#ffd600;
+    border:none;
+    color:#fff;
+    display:inline;
+    font-size:30rpx;
+    padding:20rpx 60rpx;
 }
