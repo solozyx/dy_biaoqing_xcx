@@ -1,0 +1,120 @@
+/* pages/collect/collect.ttss */
+
+.avatar-container {
+  z-index: 9999;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+  background: #ffd600;
+  background-size: 100% 100%;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.collect-img-container {
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.img-item {
+  width: 25%;
+  height: 4rem;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  box-sizing: border-box;
+}
+
+.lastIndex {
+  padding-right: 0;
+}
+.item {
+    box-sizing: border-box;
+    font-size: 14px;
+    margin: 20px auto 0;
+    padding: 5px 15px;
+    width: 100px;
+    height: 36px;
+    line-height: 36px;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid #ffe20d;
+}
+.icon {
+    width: 25px;
+    height: 25px;
+}
+.pay-text {
+    line-height: 25px;
+    margin-left: 5px;
+}
+.no_data {
+  font-size: 0.7rem;
+  color: #C0C4CC;
+  padding: 300rpx 0;
+}
+.recharge-content {
+  position: fixed;
+  z-index: 9999;
+  right:20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  font-size: 0.6rem;
+  background: #ffff;
+}
+.icon-btn{
+  font-size: 1.6rem;
+  height: 2.5rem;
+  padding: 0;
+  margin: 0;
+}
+.recharge-content::after{
+  border:0;
+}
+.getUserInfo{
+  text-align:center;
+}
+.getUserInfo image{
+    width:160rpx;
+    height:160rpx;
+    margin:auto;
+    border-radius:20rpx;
+    margin:30rpx 0;
+}
+.getUserInfo .text{
+    font-size:30rpx;
+    margin-bottom:30rpx;
+}
+
+.getUserInfo button{
+    background:#ffd600;
+    border:none;
+    color:#fff;
+    display:inline;
+    font-size:30rpx;
+    padding:20rpx 60rpx;
+}

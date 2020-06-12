@@ -99,7 +99,7 @@ Page({
 
   getCollectImg(imgId, openId) {
     api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then((res) => {
-      wx.setStorageSync("collect_img", res.data)
+      tt.setStorageSync("collect_img", res.data)
       this.isCollect(imgId, isc => {
         this.setData({
           isCollect: isc
@@ -168,7 +168,7 @@ Page({
     if (!this.data.openId) {
       tt.showModal({
         title: '温馨提示',
-        content: '小主,请先登录小程序，才可以下载图片~',
+        content: '小主,请先登录小程序，才可以收藏图片~',
         success(res) {
           if (res.confirm) {
             tt.switchTab({
@@ -352,7 +352,7 @@ Page({
       scope: 'scope.writePhotosAlbum',
       success() {
         // 用户已经同意小程序使
-        const downloadTask = wx.downloadFile({
+        const downloadTask = tt.downloadFile({
           url: str,
           success: function (res) {
             var temp = res.tempFilePath

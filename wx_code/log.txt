@@ -1,0 +1,868 @@
+[
+    {
+        "time": "2020-06-03T03:03:45.066Z",
+        "type": "stdOut",
+        "message": "🛠️    Transform source project..."
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxml file suffix",
+        "file": "all\\all.wxml",
+        "message": "转换了视图文件后缀, wxml ==> ttml"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxss file suffix",
+        "file": "all\\all.wxss",
+        "message": "转换了样式文件后缀, wxss ==> ttss"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxml file suffix",
+        "file": "appreciate\\appreciate.wxml",
+        "message": "转换了视图文件后缀, wxml ==> ttml"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxss file suffix",
+        "file": "appreciate\\appreciate.wxss",
+        "message": "转换了样式文件后缀, wxss ==> ttss"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxml file suffix",
+        "file": "collect\\collect.wxml",
+        "message": "转换了视图文件后缀, wxml ==> ttml"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxss file suffix",
+        "file": "collect\\collect.wxss",
+        "message": "转换了样式文件后缀, wxss ==> ttss"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxml file suffix",
+        "file": "imagePanel\\imagePanel.wxml",
+        "message": "转换了视图文件后缀, wxml ==> ttml"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxss file suffix",
+        "file": "imagePanel\\imagePanel.wxss",
+        "message": "转换了样式文件后缀, wxss ==> ttss"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxml file suffix",
+        "file": "index\\index.wxml",
+        "message": "转换了视图文件后缀, wxml ==> ttml"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxss file suffix",
+        "file": "index\\index.wxss",
+        "message": "转换了样式文件后缀, wxss ==> ttss"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxml file suffix",
+        "file": "list\\list.wxml",
+        "message": "转换了视图文件后缀, wxml ==> ttml"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxss file suffix",
+        "file": "list\\list.wxss",
+        "message": "转换了样式文件后缀, wxss ==> ttss"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxml file suffix",
+        "file": "search\\search.wxml",
+        "message": "转换了视图文件后缀, wxml ==> ttml"
+    },
+    {
+        "time": "2020-06-03T03:03:45.086Z",
+        "type": "transform wxss file suffix",
+        "file": "search\\search.wxss",
+        "message": "转换了样式文件后缀, wxss ==> ttss"
+    },
+    {
+        "time": "2020-06-03T03:03:45.089Z",
+        "type": "transform wxml file suffix",
+        "file": "search_tool\\searchTool.wxml",
+        "message": "转换了视图文件后缀, wxml ==> ttml"
+    },
+    {
+        "time": "2020-06-03T03:03:45.089Z",
+        "type": "transform wxss file suffix",
+        "file": "search_tool\\searchTool.wxss",
+        "message": "转换了样式文件后缀, wxss ==> ttss"
+    },
+    {
+        "time": "2020-06-03T03:03:45.198Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/app.js",
+        "row": 8,
+        "column": 15,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.200Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/app.js",
+        "row": 10,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.200Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/app.js",
+        "row": 65,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.201Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/app.js",
+        "row": 78,
+        "column": 19,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.202Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/app.js",
+        "row": 90,
+        "column": 19,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.218Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/components/search_tool/searchTool.js",
+        "row": 22,
+        "column": 6,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.230Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/all/all.js",
+        "row": 23,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.231Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/all/all.js",
+        "row": 29,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.231Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/all/all.js",
+        "row": 82,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.232Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/all/all.js",
+        "row": 88,
+        "column": 6,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.269Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 21,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.270Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 29,
+        "column": 6,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.270Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 38,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.270Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 39,
+        "column": 22,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.271Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 40,
+        "column": 6,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.271Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 51,
+        "column": 10,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.272Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 53,
+        "column": 10,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.272Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 66,
+        "column": 14,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.272Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 68,
+        "column": 14,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.272Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 92,
+        "column": 24,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.274Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 141,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.274Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 146,
+        "column": 12,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.275Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 153,
+        "column": 14,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.275Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/collect/collect.js",
+        "row": 157,
+        "column": 16,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.300Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 36,
+        "column": 12,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.301Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 41,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.301Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 42,
+        "column": 17,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.303Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 145,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.303Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 152,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.303Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 157,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.303Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 164,
+        "column": 14,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.303Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 178,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.304Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 187,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.305Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 194,
+        "column": 10,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.305Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 199,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.305Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 208,
+        "column": 12,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.305Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 215,
+        "column": 21,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.305Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/imagePanel/imagePanel.js",
+        "row": 220,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.326Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/index/index.js",
+        "row": 20,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.326Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/index/index.js",
+        "row": 27,
+        "column": 14,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.327Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/index/index.js",
+        "row": 32,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.327Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/index/index.js",
+        "row": 42,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.327Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/index/index.js",
+        "row": 43,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.327Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/index/index.js",
+        "row": 55,
+        "column": 6,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.327Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/index/index.js",
+        "row": 57,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.328Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/index/index.js",
+        "row": 58,
+        "column": 22,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.328Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/index/index.js",
+        "row": 96,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.328Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/index/index.js",
+        "row": 101,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.339Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/list/list.js",
+        "row": 79,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.340Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/list/list.js",
+        "row": 80,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.348Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/search/search.js",
+        "row": 102,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.349Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/pages/search/search.js",
+        "row": 103,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.361Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/utils/api.js",
+        "row": 18,
+        "column": 6,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.361Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/utils/api.js",
+        "row": 35,
+        "column": 6,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.361Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/utils/api.js",
+        "row": 55,
+        "column": 6,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.363Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/utils/api.js",
+        "row": 74,
+        "column": 6,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.468Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/utils/util.js",
+        "row": 19,
+        "column": 9,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.469Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/utils/util.js",
+        "row": 30,
+        "column": 9,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.488Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/login.js",
+        "row": 26,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.488Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/login.js",
+        "row": 28,
+        "column": 12,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.488Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/login.js",
+        "row": 99,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.488Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/login.js",
+        "row": 136,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.500Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/request.js",
+        "row": 77,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.507Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/session.js",
+        "row": 6,
+        "column": 15,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.507Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/session.js",
+        "row": 10,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.507Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/session.js",
+        "row": 14,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.533Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/tunnel.js",
+        "row": 193,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.533Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/tunnel.js",
+        "row": 264,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.534Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/tunnel.js",
+        "row": 436,
+        "column": 12,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.534Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/tunnel.js",
+        "row": 503,
+        "column": 8,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.554Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/wxTunnel.js",
+        "row": 23,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.554Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/wxTunnel.js",
+        "row": 24,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.554Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/wxTunnel.js",
+        "row": 25,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.554Z",
+        "type": "transform function call arg name",
+        "file": "E:/xcx_code/dy_biaoqing_xcx/vendor/wafer2-client-sdk/lib/wxTunnel.js",
+        "row": 26,
+        "column": 4,
+        "before": "wx",
+        "after": "tt",
+        "message": "转换了上下文, wx ==> tt"
+    },
+    {
+        "time": "2020-06-03T03:03:45.557Z",
+        "type": "stdOut",
+        "message": "🍻    Successfully transform js file"
+    },
+    {
+        "time": "2020-06-03T03:03:45.590Z",
+        "type": "stdOut",
+        "message": "🍻    Successfully transform wxml file"
+    },
+    {
+        "time": "2020-06-03T03:03:45.606Z",
+        "type": "stdOut",
+        "message": "🍻    Successfully transform wxss file"
+    },
+    {
+        "time": "2020-06-03T03:03:45.894Z",
+        "type": "stdOut",
+        "message": "🎊    Congratulations, transform done! Please check transform log in"
+    },
+    {
+        "time": "2020-06-03T03:03:45.894Z",
+        "type": "stdOut",
+        "message": "📝    E:\\xcx_code\\dy_biaoqing_xcx\\log.txt"
+    }
+]

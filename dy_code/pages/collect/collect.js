@@ -185,12 +185,12 @@ Page({
               })
             },
             fail: res => {
-              wx.showModal({
+              tt.showModal({
                 title: '温馨提示',
                 content: '小主，登录小程序，需允许授权用户信息~',
                 success(res) {
                   if (res.confirm) {
-                    wx.openSetting({
+                    tt.openSetting({
                       success(res) {
                         console.log(res.authSetting)
                       }

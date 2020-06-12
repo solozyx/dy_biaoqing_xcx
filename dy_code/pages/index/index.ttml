@@ -1,0 +1,69 @@
+<!--index.ttml-->
+<view class='banner-content'>
+	<image src="../../images/banner.jpg" mode="scaleToFill" class='banner' />
+</view>
+<search-tool id='searchTool'></search-tool>
+<view class="recent_content">
+	<!-- <view class="tody_update">今日更新</view>
+		<view class="img-container">
+			<block tt:for="{{todayUpdate}}" tt:for-item="item" tt:for-index="itemIdx">
+				<image bindtap="showMoreDetail" class="img-item" src="{{item.url}}" mode="scaleToFill" data-imgarr="{{item.imgArr}}" data-imgs='{{item.imgs}}'
+				 lazy-load="true"></image>
+			</block>
+		</view> -->
+	<scroll-view class="recent_container">
+		<view class="emoticon border-line-class">
+			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>热门表情</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr='{{emoticon}}' data-type='emoticon'>查看更多</view>
+		</view>
+		<view class="img-container">
+			<block tt:for="{{hotEmoticon}}" tt:for-item="item" tt:for-index="itemIdx">
+				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item.img}}"
+				 mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<8}}'></image>
+			</block>
+		</view>
+    <view class='dis-line'></view>
+		<view class="head-portrait border-line-class">
+			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>热门头像</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr='{{headPortrait}}' data-type='headPortrait'>查看更多</view>
+		</view>
+		<view class="img-container">
+			<block tt:for="{{hotHeadPortrait}}" tt:for-item="item" tt:for-index="itemIdx">
+				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item.img}}"
+				 mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<8}}'></image>
+			</block>
+		</view>
+    <view class='dis-line'></view>
+		<view class="background-image border-line-class">
+			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>热门背景</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr="{{backgroundImage}}" data-type='backgroundImage'>查看更多</view>
+		</view>
+		<view class="img-container">
+			<block tt:for="{{hotBackgroundImage}}" tt:for-item="item" tt:for-index="itemIdx">
+				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item.img}}"
+				 mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<8}}'></image>
+			</block>
+		</view>
+    <view class='dis-line'></view>
+		<view class="wallpaper border-line-class">
+			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>热门壁纸</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr="{{wallpaper}}" data-type='wallpaper'>查看更多</view>
+		</view>
+		<view class="img-container">
+			<block tt:for="{{hotWallpaper}}" tt:for-item="item" tt:for-index="itemIdx">
+				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item-long {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item.img}}"
+				 mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<8}}'></image>
+			</block>
+		</view>
+    <view class='dis-line'></view>
+		<view class='contact-container border-line-class'>
+      <view class="classify-title"><i class="iconfont icondianzan icon-title"></i>最近更新</view>
+		</view>
+		<view class="recent-img-container">
+			<block tt:for="{{recentUpdate}}" tt:for-item="item" tt:for-index="itemIdx">
+				<image bindtap="showMoreDetail" class="recent-img-item {{(itemIdx+1)%3==0?'lastIndex':''}}" src="{{item.img}}" mode="scaleToFill"
+				 data-item="{{item}}" lazy-load="true"></image>
+			</block>
+		</view>
+	</scroll-view>
+</view>

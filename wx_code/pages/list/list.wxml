@@ -1,0 +1,7 @@
+<!--pages/list/list.ttml-->
+<view class="img-container">
+<block tt:for="{{listData}}" tt:for-item="item" tt:for-index="itemIdx">
+	<image bindtap="showMoreDetail" class="{{(itemIdx+1)%3==0?'lastIndex':''}} {{itemClass}}" src="{{item.img}}" mode="scaleToFill" data-item='{{item}}'
+	 lazy-load="true"></image>
+</block>
+</view>
