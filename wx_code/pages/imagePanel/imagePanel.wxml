@@ -25,7 +25,7 @@
 <view class="imge_wrap">
 <view class="image_title">相关表情</view>
 <scroll-view class="img-container">
-  <block tt:for="{{imgData}}" tt:for-item="item" tt:for-index="itemIdx">
+  <block wx:for="{{imgData}}" wx:for-item="item" wx:for-index="itemIdx">
     <image bindtap="selectImg" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item}}" data-url="{{item}}" mode="aspectFit" lazy-load="true"></image>
   </block>
 </scroll-view>
