@@ -1,5 +1,0 @@
-<!--pages/appreciate/appreciate.ttml-->
-<view class="appreciate_container">
-<image class="appreciate" src="/images/appreciate.jpg" mode="aspectFit">
-</image>
-</view>

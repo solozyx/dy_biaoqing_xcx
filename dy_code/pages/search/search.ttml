@@ -9,7 +9,7 @@
   <!-- <view class="search_title">表情系列</view> -->
   <view class="img-container">
   <block tt:for="{{searchData}}" tt:for-item="item" tt:for-index="itemIdx">
-      <image src="{{item.img}}" mode="scaleToFill" class="img-item" bindtap="showMoreImg" data-item="{{item}}"></image>
+      <image src="{{item.img}}" mode="scaleToFill" class="img-item {{(itemIdx+1)%3==0?'lastIndex':''}}" bindtap="showMoreImg" data-item="{{item}}"></image>
       <!-- <view class="describ_container">
         <view class="b_title">
           {{item.title}}

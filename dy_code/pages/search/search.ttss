@@ -82,6 +82,9 @@ line-height: 1rem;
   border-radius: 5px;
 }
 
+.lastIndex {
+  margin-right: 0;
+}
 .img-container{
   padding: 8px;
   box-sizing: border-box;
