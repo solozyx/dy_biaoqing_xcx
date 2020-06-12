@@ -1,9 +1,0 @@
-<!--components/search_tool/searchTool.ttml-->
-<view class="search_tool_container">
-	<view class="search_tool">
-    <icon type="search" size="16" class='search_icon'/>
-    <input class='input' placeholder="搜索热词" bindinput="listenerSearchInput" placeholder-style="font-size:0.6rem" value="{{inputValue}}" confirm-type="search" bindconfirm="confirmSearch">
-    </input>
-    <view class='search' bindtap="search">搜索</view>
-</view>
-</view>
