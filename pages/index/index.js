@@ -15,8 +15,12 @@ Page({
     headPortrait: [],//头像
     backgroundImage: [],//背景图
     wallpaper: [],//壁纸
+    hotEmoticon:[],
+    hotHeadPortrait:[],
+    hotBackgroundImage:[],
+    hotWallpaper:[],
     allImgData: [],
-    updateImg: 24,
+    updateImg: 0,
     height: ''
   },
   //事件处理函数
@@ -42,7 +46,7 @@ Page({
   showMoreDetail: function (e) {
     let imgItem = JSON.stringify(e.target.dataset.item);
     tt.navigateTo({
-      url: `/pages/imagePanel/imagePanel?imgItem=${imgItem}` 
+      url: `/pages/imagePanel/imagePanel?imgItem=${imgItem}`
     });
   },
 
@@ -66,7 +70,11 @@ Page({
           headPortrait: res.data.filter(item => item.classify_id === classifyArr[1]),
           backgroundImage: res.data.filter(item => item.classify_id === classifyArr[2]),
           wallpaper: res.data.filter(item => item.classify_id === classifyArr[3]),
-          allImgData: res.data
+          hotEmoticon: res.data.filter(item => item.classify_id === classifyArr[0] && item.ishot),
+          hotHeadPortrait: res.data.filter(item => item.classify_id === classifyArr[1] && item.ishot),
+          hotBackgroundImage: res.data.filter(item => item.classify_id === classifyArr[2] && item.ishot),
+          hotWallpaper: res.data.filter(item => item.classify_id === classifyArr[3] && item.ishot),
+          allImgData: res.data.reverse()
         })
         cososle.log(this.data)
       });
