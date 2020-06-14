@@ -2,7 +2,7 @@
 <view wx:if="{{!hasUserInfo}}" class="getUserInfo">
 	<image src="../../images/logo.png"></image>
 	<view class="text">个人中心页面需要获取用户授权信息</view>
-	<button  bindtap="submitSign"> 登录 </button>
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信登录 </button>
   </view>
 <block wx:else>
 <view class="avatar-container">
@@ -15,14 +15,14 @@
            <i class="iconfont icon-btn iconkefu"></i>
           <text>客服</text>
 </button>
-<block tt:if="{{collectData.length>0}}">
+<block wx:if="{{collectData.length>0}}">
 <scroll-view class="collect-img-container">
-  <block tt:for="{{collectData}}" tt:for-item="item" tt:for-index="itemIdx">
+  <block wx:for="{{collectData}}" wx:for-item="item" wx:for-index="itemIdx">
     <image data-url="{{item}}" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item}}" mode="aspectFit" bindtap="openImg"></image>
   </block>
 </scroll-view>
 </block>
-<view tt:else class="no_data container">
+<view wx:else class="no_data container">
   暂无收藏
 </view>
 </block>

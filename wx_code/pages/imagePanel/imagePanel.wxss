@@ -1,7 +1,7 @@
 /* pages/imagePanel/imagePanel.ttss */
 
 .select_container {
-  height: 9rem;
+  height: 11rem;
   text-align: center;
 }
 .icon-btn {
@@ -9,21 +9,20 @@
   font-size: 1rem;
 }
 .select_container .image {
-  height: 7rem;
-  width: 7rem;
+  height: 9rem;
+  width: 9rem;
   margin-top: 1rem;
 }
 
 .image_title {
   background: #efeff4;
-  font-size: 0.7rem;
   padding: 5px 15px;
   color: #606266;
   margin-bottom: 10px;
 }
 
 .img-container {
-  padding-bottom: 3.5rem;
+  padding: 8px;
 }
 
 .img-item {
@@ -50,8 +49,8 @@
 
 .collect, .share ,.zs{
   display: flex;
-  font-size: 0.9rem;
-  width: 33.3%;
+  font-size: 1.2rem;
+  width: 50%;
   float: left;
   align-items: center;
   justify-content: center;

@@ -9,6 +9,7 @@ Page({
    */
   data: {
     userInfo: {},
+    openId:null,
     collectData: [],
     hasUserInfo: false
   },
@@ -18,22 +19,23 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    if (app.globalData.userInfo) {
+    if (app.globalData.userInfo && app.globalData.openId) {
       that.setData({
         userInfo: app.globalData.userInfo,
+        openId: app.globalData.openId,
         hasUserInfo: true
       });
     } else if (app.userInfoReadyCallback) {
       app.userInfoReadyCallback = res => {
         this.setData({
-          userInfo: res,
+          userInfo: res.userInfo, 
+          openId: res.openId,
           hasUserInfo: true
         })
       };
     } else {
       return false
     }
-    console.log(666)
     this.getCollectImg()
   },
 
@@ -130,10 +132,12 @@ Page({
       that.setData({
         collectData: imgs
       });
+      console.log(imgs)
     } else {
+      console.log(app)
       // let openId = app.globalData.userInfo.openId
-      if (app.globalData.userInfo && app.globalData.userInfo.openId) {
-        let openId = app.globalData.userInfo.openId;
+      if (app.globalData.userInfo && app.globalData.openId) {
+        let openId = app.globalData.openId;
         api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then(res => {
           wx.setStorageSync("collect_img", res.data);
           collectImgObj = res.data;
@@ -161,69 +165,37 @@ Page({
       }
     });
   },
-  getUserInfo(code) {
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            withCredentials: true,
-            success: res => {
-              this.getInfo(res, code)
-            }
+  getUserInfo: function(e) {
+    console.log(e)
+    if (e.detail.userInfo){
+      app.globalData.userInfo = e.detail.userInfo
+      this.setData({
+        userInfo: e.detail.userInfo
+      })
+      wx.login({
+        success: res => {
+          console.log(res)
+          let nickname = e.detail.userInfo.nickName
+          api.get(`${api.SERVER_PATH}wxlogin?code=${res.code}&nick_name=${nickname}`).then(res1=>{
+            console.log(res1)
+            app.globalData.openId = res1.data.openId 
+            this.setData({
+              openId:res1.data.openId,
+              hasUserInfo: true
+            })
           })
-        } else {
-          wx.authorize({
-            scope: 'scope.userInfo',
-            success: res => {
-              // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-              wx.getUserInfo({
-                withCredentials: true,
-                success: res => {
-                  this.getInfo(res, code)
-                }
-              })
-            },
-            fail: res => {
-              wx.showModal({
-                title: '温馨提示',
-                content: '小主，登录小程序，需允许授权用户信息~',
-                success(res) {
-                  if (res.confirm) {
-                    wx.openSetting({
-                      success(res) {
-                        console.log(res.authSetting)
-                      }
-                    })
-                  }
-                }
-              })
-            }
-          })
+        },
+        fail: res=>{
+          console.log(res)
         }
-      }
-    });
-  },
-  getInfo(res, code) {
-    wx.request({
-      url: "https://dy.test97.com/weapp/login",
-      data: {
-        encryptedData: res.encryptedData,
-        iv: res.iv,
-        code
-      },
-      method: 'get',
-      success: res1 => {
-        this.setData({
-          userInfo: res1.data,
-          hasUserInfo: true
-        })
-        app.globalData.userInfo = res1.data
-        this.getCollectImg()
-      },
-      fail(res) {
-        console.log(`request调用失败`);
-      }
-    });
-  },
+      })
+    } else {
+      //用户按了拒绝按钮
+      wx.showToast({
+        title: '小主，使用快兔表情，需允许微信授权~',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  }
 });

@@ -21,15 +21,15 @@ Page({
    */
   onLoad: function (options) {
     let imgItem = JSON.parse(options.imgItem);
+    console.log(imgItem)
     this.setData({
       selectUrl: imgItem.img
     })
-    if (app.globalData.userInfo && app.globalData.userInfo.openId) {
+    if (app.globalData.userInfo && app.globalData.openId) {
       this.setData({
-        openId: app.globalData.userInfo.openId
+        openId: app.globalData.openId
       })
-      console.log(imgItem.img_id, app.globalData.userInfo.openId)
-      this.getCollectImg(imgItem.img_id, app.globalData.userInfo.openId)
+      this.getCollectImg(imgItem.img_id, app.globalData.openId)
     } else if (app.userInfoReadyCallback) {
       app.userInfoReadyCallback = res => {
         this.setData({
@@ -165,20 +165,20 @@ Page({
     });
   },
   collectImg: function (e) {
-    // if (!this.data.openId) {
-    //   wx.showModal({
-    //     title: '温馨提示',
-    //     content: '小主,请先登录小程序，才可以下载图片~',
-    //     success(res) {
-    //       if (res.confirm) {
-    //         wx.switchTab({
-    //           url: '/pages/collect/collect'
-    //         });
-    //       }
-    //     }
-    //   })
-    //  return false
-    // }
+    if (!this.data.openId) {
+      wx.showModal({
+        title: '温馨提示',
+        content: '小主,请先登录小程序，才可以下载图片~',
+        success(res) {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '/pages/collect/collect'
+            });
+          }
+        }
+      })
+     return false
+    }
     wx.showLoading({
       title: 'loading'
     });
@@ -248,52 +248,54 @@ Page({
         }
       })
       return false
-    }
-    var dataStr = new Date().getTime()
-    if (wx.getStorageSync("collectTime") && wx.getStorageSync("collectTime") > dataStr) {
+    }else{
       this.saveImgs()
-    } else {
-      wx.showModal({
-        title: '温馨提示',
-        content: '观看30s视频解锁下载图片~',
-        success(res) {
-          if (res.confirm) {
-            let videoAd = wx.createRewardedVideoAd({
-              adUnitId: '2632m76gpedf5i5952'
-            })
-            // 显示广告
-            videoAd
-              .show()
-              .then(() => {
-                console.log("广告显示成功");
-              })
-              .catch(err => {
-                wx.showToast({
-                  title: '广告组件出现问题~',
-                  icon: 'none',
-                  duration: 1000
-                })
-                // 可以手动加载一次
-                videoAd.load().then(() => {
-                  console.log("手动加载成功");
-                  // 加载成功后需要再显示广告
-                  return videoAd.show();
-                });
-              });
-            videoAd.onClose(res => {
-              if (res.isEnded) {
-                // 给予奖励
-                var data = new Date()
-                let timestr = data.setHours(data.getHours() + 3)
-                wx.setStorageSync("collectTime", timestr)
-              }
-            });
-          } else if (res.cancel) {
-            console.log("cancel, cold");
-          }
-        }
-      })
     }
+    // var dataStr = new Date().getTime()
+    // if (wx.getStorageSync("collectTime") && wx.getStorageSync("collectTime") > dataStr) {
+    //   this.saveImgs()
+    // } else {
+    //   wx.showModal({
+    //     title: '温馨提示',
+    //     content: '观看30s视频解锁下载图片~',
+    //     success(res) {
+    //       if (res.confirm) {
+    //         let videoAd = wx.createRewardedVideoAd({
+    //           adUnitId: '2632m76gpedf5i5952'
+    //         })
+    //         // 显示广告
+    //         videoAd
+    //           .show()
+    //           .then(() => {
+    //             console.log("广告显示成功");
+    //           })
+    //           .catch(err => {
+    //             wx.showToast({
+    //               title: '广告组件出现问题~',
+    //               icon: 'none',
+    //               duration: 1000
+    //             })
+    //             // 可以手动加载一次
+    //             videoAd.load().then(() => {
+    //               console.log("手动加载成功");
+    //               // 加载成功后需要再显示广告
+    //               return videoAd.show();
+    //             });
+    //           });
+    //         videoAd.onClose(res => {
+    //           if (res.isEnded) {
+    //             // 给予奖励
+    //             var data = new Date()
+    //             let timestr = data.setHours(data.getHours() + 3)
+    //             wx.setStorageSync("collectTime", timestr)
+    //           }
+    //         });
+    //       } else if (res.cancel) {
+    //         console.log("cancel, cold");
+    //       }
+    //     }
+    //   })
+    // }
   },
   saveImgs() {
     let that = this

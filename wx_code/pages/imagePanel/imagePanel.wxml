@@ -10,23 +10,23 @@
   </view> -->
 		<view class="collect" bindtap='collectImg'>
 			<i class="iconfont icon-btn {{isCollect?'iconshoucangxingxing':'iconshoucangxingxing-xianxing'}}"></i>
-    <text class="collect_text">{{isCollect?"已收藏":"收藏"}}</text>
-  </view>
-  <view class="share" bindtap='saveImgs'>
-    <i class="iconfont icon-btn icondownload"></i>
-    <text class="share_text">保存</text>
-  </view>
-  <view class="zs" bindtap='gotoHome'>
-    <i class="iconfont icon-btn icongengduo-2"></i>
-    <text class="share_text">更多</text>
-  </view>
-</view>
+			<text class="collect_text">{{isCollect?"已收藏":"收藏"}}</text>
+		</view>
+		<view class="share" bindtap='shareImage'>
+			<i class="iconfont icon-btn icondownload"></i>
+			<text class="share_text">保存</text>
+		</view>
+		<!-- <view class="zs" bindtap='gotoHome'>
+			<i class="iconfont icon-btn icongengduo-2"></i>
+			<text class="share_text">更多</text>
+		</view> -->
+	</view>
 </view>
 <view class="imge_wrap">
-<view class="image_title">相关表情</view>
-<scroll-view class="img-container">
-  <block wx:for="{{imgData}}" wx:for-item="item" wx:for-index="itemIdx">
-    <image bindtap="selectImg" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item}}" data-url="{{item}}" mode="aspectFit" lazy-load="true"></image>
-  </block>
-</scroll-view>
+	<view class="image_title">相关表情</view>
+	<scroll-view class="img-container">
+		<block wx:for="{{imgData}}" wx:for-item="item" wx:for-index="itemIdx">
+			<image bindtap="selectImg" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item}}" data-url="{{item}}" mode="aspectFit" lazy-load="true"></image>
+		</block>
+	</scroll-view>
 </view>

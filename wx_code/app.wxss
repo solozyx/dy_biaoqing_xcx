@@ -9,8 +9,8 @@
   box-sizing: border-box;
 } 
 
-#app{
-  font-size: 0.7rem;
+page{
+  font-size: 0.8rem;
 }
 @font-face {font-family: "iconfont";
   src: url('//at.alicdn.com/t/font_1872772_orayq67ssx.eot?t=1591843267243'); /* IE9 */
