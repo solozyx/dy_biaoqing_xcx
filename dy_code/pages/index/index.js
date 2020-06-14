@@ -62,6 +62,7 @@ Page({
    */
   getAllImg: function () {
     api.get(api.SERVER_PATH + api.IMGS).then(res => {
+      res.data = res.data.reverse()
       tt.setStorageSync("all_img", res.data)
       api.get(api.SERVER_PATH + api.CLASSIFY).then(res1 => {
         let classifyArr = res1.data.map(item => item.classify_id)
@@ -74,7 +75,7 @@ Page({
           hotHeadPortrait: res.data.filter(item => item.classify_id === classifyArr[1] && item.ishot),
           hotBackgroundImage: res.data.filter(item => item.classify_id === classifyArr[2] && item.ishot),
           hotWallpaper: res.data.filter(item => item.classify_id === classifyArr[3] && item.ishot),
-          allImgData: res.data.reverse()
+          allImgData: res.data
         })
         cososle.log(this.data)
       });
