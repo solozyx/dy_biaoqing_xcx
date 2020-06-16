@@ -14,7 +14,8 @@ Page({
     imgData: [],
     openId: null,
     percent_n: 0,
-    imgItem:null
+    imgItem:null,
+    is_active:false
   },
 
   /**
@@ -134,7 +135,7 @@ Page({
    * 预览图片
    */
   previewImage: function (e) {
-    let url = e.currentTarget.dataset.src
+    let url = this.data.selectUrl
     wx.previewImage({
       current: url,
       urls: this.data.imgData,
@@ -157,25 +158,21 @@ Page({
         that.previewImage();
       },
       fail: function (res) {
-        wx.showModal({
-          title: "温馨提示",
-          content: "请在预览界面长按图片，然后选择【发送给朋友】即可",
-          showCancel: false,
-          confirmText: "我知道了",
-          success: function (res) {
-            if (res.confirm) {
-              wx.setStorage({
-                key: 'isSet',
-                data: true
-              });
-              that.previewImage();
-            } else if (res.cancel) {
-              console.log('用户点击取消');
-            }
-          }
-        });
+        that.setData({
+          is_active:true
+        })
       }
     });
+  },
+  showPreview () {
+    this.setData({
+      is_active:false
+    })
+    wx.setStorage({
+      key: 'isSet',
+      data: true
+    });
+    this.previewImage()
   },
   collectImg: function (e) {
     if (!this.data.openId) {

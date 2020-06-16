@@ -13,7 +13,8 @@ Page({
     isCollect: false,
     imgData: [],
     openId: null,
-    percent_n: 0
+    percent_n: 0,
+    imgItem: null
   },
 
   /**
@@ -21,6 +22,9 @@ Page({
    */
   onLoad: function (options) {
     let imgItem = JSON.parse(options.imgItem);
+    this.setData({
+      imgItem: options.imgItem
+    })
     this.setData({
       selectUrl: imgItem.img
     })
@@ -87,9 +91,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
+    let imgItem = this.data.imgItem
+    console.log(imgItem)
     return {
       title: '',
-      path: `/pages/imagePanel/imagePanel?imgs=${this.imgs}`,
+      path: `/pages/imagePanel/imagePanel?imgItem=${imgItem}`,
       success: function (res) {// 转发成功
       },
       fail: function (res) {// 转发失败
@@ -177,7 +183,7 @@ Page({
           }
         }
       })
-     return false
+      return false
     }
     tt.showLoading({
       title: 'loading'

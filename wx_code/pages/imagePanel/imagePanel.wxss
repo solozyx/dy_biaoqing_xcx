@@ -70,11 +70,42 @@
   width: 1.3rem;
   height: 1.3rem;
 }
-.select_wrap {
-  
+.select_wrap { 
   background: #fff;
 }
 
 .imge_wrap {
  
+}
+
+.modal-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: black;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 150rpx 0;
+}
+.modal-content.hide_modal{
+  display: none;
+}
+.modal-img-content .modal-img-content{
+  position: absolute;
+  top: 0;
+  height: 50vh;
+}
+.save-tip-content{
+  position: absolute;
+  bottom: 0;
+  height: 50vh;
+}
+.save-tip-content image{
+  height: calc(100% - 10px);
 }

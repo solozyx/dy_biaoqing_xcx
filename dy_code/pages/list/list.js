@@ -7,7 +7,9 @@ Page({
    */
   data: {
     listData: [],
-    itemClass: 'img-item'
+    itemClass: 'img-item',
+    type: null,
+    imgarr: null
   },
 
   /**
@@ -23,12 +25,14 @@ Page({
     tt.setNavigationBarTitle({
       title: obj[options.type]
     })
-    let isLongType = options.type==='wallpaper'
+    let isLongType = options.type === 'wallpaper'
     console.log(isLongType)
     let itemClass = isLongType ? 'long-img-item ' : 'img-item'
     this.setData({
       listData: JSON.parse(options.imgarr),
-      itemClass: itemClass
+      itemClass: itemClass,
+      imgarr: options.imgarr,
+      type: options.type
     })
   },
 
@@ -65,7 +69,18 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () { },
+  onShareAppMessage: function () {
+    let type = this.data.type
+    let imgarr = this.data.imgarr
+    return {
+      title: '',
+      path: `/pages/list/list?imgarr=${imgarr}&type=${type}`,
+      success: function (res) {// 转发成功
+      },
+      fail: function (res) {// 转发失败
+      }
+    };
+  },
   showMoreDetail: function (e) {
     let imgItem = JSON.stringify(e.target.dataset.item);
     tt.navigateTo({

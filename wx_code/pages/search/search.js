@@ -54,7 +54,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () { },
+  onShareAppMessage: function () {
+    let inputValue = this.data.inputValue
+    return {
+      title: '',
+      path: `/pages/search/search?searchValue=${inputValue}`,
+      success: function (res) {// 转发成功
+      },
+      fail: function (res) {// 转发失败
+      }
+    };
+   },
   listenerSearchInput: function (e) {
     this.setData({
       inputValue: e.detail.value

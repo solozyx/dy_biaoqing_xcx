@@ -1,7 +1,7 @@
 <!--pages/imagePanel/imagePanel.ttml-->
 <view class="select_wrap">
 	<view class="select_container">
-		<image src="{{selectUrl}}" mode="aspectFit" class="image" bindtap="previewImage" data-src='{{selectUrl}}'></image>
+		<image src="{{selectUrl}}" mode="aspectFit" class="image" bindtap="previewImage"></image>
 	</view>
 	<view class="bottom_container">
 		<!-- <view class="share" bindtap='shareImage'>
@@ -29,4 +29,12 @@
 			<image bindtap="selectImg" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item}}" data-url="{{item}}" mode="aspectFit" lazy-load="true"></image>
 		</block>
 	</scroll-view>
+</view>
+<view class="modal-content {{is_active?'':'hide_modal'}}" bindtap="showPreview">
+	<view class='modal-img-content'>
+		<image src="{{selectUrl}}" mode="aspectFit" class="image" bindtap="previewImage"></image>
+	</view>
+	<view class='save-tip-content'>
+		<image src="../../images/save_tip.png" mode="aspectFit"></image>
+	</view>
 </view>

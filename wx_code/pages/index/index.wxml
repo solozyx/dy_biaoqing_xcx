@@ -52,7 +52,7 @@
 		<view class="img-container">
 			<block wx:for="{{hotWallpaper}}" wx:for-item="item" wx:for-index="itemIdx">
 				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item-long {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item.img}}"
-				 mode="scaleToFill" lazy-load="true" wx:if='{{itemIdx<8}}'></image>
+				 mode="scaleToFill" lazy-load="true" wx:if='{{itemIdx<4}}'></image>
 			</block>
 		</view>
     <view class='dis-line'></view>

@@ -83,7 +83,6 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () { },
   openImg: function (e) {
     let url = e.target.dataset.url;
     var that = this;
