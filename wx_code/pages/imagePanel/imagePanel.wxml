@@ -1,7 +1,7 @@
 <!--pages/imagePanel/imagePanel.ttml-->
 <view class="select_wrap">
 	<view class="select_container">
-		<image src="{{selectUrl}}" mode="aspectFit" class="image" bindtap="previewImage"></image>
+		<image src="{{selectUrl}}" mode="aspectFit" class="image" bindtap="previewImage" data-src='{{selectUrl}}'></image>
 	</view>
 	<view class="bottom_container">
 		<!-- <view class="share" bindtap='shareImage'>

@@ -13,17 +13,20 @@ Page({
     isCollect: false,
     imgData: [],
     openId: null,
-    percent_n: 0
+    percent_n: 0,
+    imgItem:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let imgItem = JSON.parse(options.imgItem);
-    console.log(imgItem)
     this.setData({
-      selectUrl: imgItem.img
+      imgItem:options.imgItem
+    })
+    let imgItem = JSON.parse(options.imgItem);
+    this.setData({
+      selectUrl: imgItem.img ||  imgItem["img"]
     })
     if (app.globalData.userInfo && app.globalData.openId) {
       this.setData({
@@ -61,7 +64,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () { },
+  onShow: function (options) {
+    console.log(options)
+   },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -87,9 +92,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
+    let imgItem = this.data.imgItem
+    console.log(imgItem)
     return {
       title: '',
-      path: `/pages/imagePanel/imagePanel?imgs=${this.imgs}`,
+      path: `/pages/imagePanel/imagePanel?imgItem=${imgItem}`,
       success: function (res) {// 转发成功
       },
       fail: function (res) {// 转发失败
@@ -126,14 +133,20 @@ Page({
   /**
    * 预览图片
    */
-  previewImage: function () {
-    var urls = [];
-    this.data.imgData.map(item => {
-      urls.push(item);
-    });
+  previewImage: function (e) {
+    let url = e.currentTarget.dataset.src
     wx.previewImage({
-      current: this.data.selectUrl,
-      urls: urls
+      current: url,
+      urls: this.data.imgData,
+      success:res=>{
+        console.log(res)
+      },
+      fail:res=>{
+        console.log(res)
+      },
+      complete: res=>{
+        console.log(res)
+      }
     });
   },
   shareImage: function () {
