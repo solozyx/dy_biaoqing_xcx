@@ -52,7 +52,7 @@
 		<view class="img-container">
 			<block tt:for="{{hotWallpaper}}" tt:for-item="item" tt:for-index="itemIdx">
 				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item-long {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item.img}}"
-				 mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<8}}'></image>
+				 mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<4}}'></image>
 			</block>
 		</view>
     <view class='dis-line'></view>
