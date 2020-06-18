@@ -280,7 +280,7 @@ Page({
     } else {
       tt.showModal({
         title: '温馨提示',
-        content: '观看30s视频解锁下载图片~',
+        content: '观看视频解锁下载图片~',
         success(res) {
           if (res.confirm) {
             if (videoAd) {

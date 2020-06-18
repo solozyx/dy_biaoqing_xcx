@@ -169,7 +169,7 @@ Page({
   },
   shareImage: function () {
     var that = this;
-    wx.getStorageSync({
+    wx.getStorage({
       key: 'isSet',
       success: function (res) {
         that.previewImage();
@@ -185,7 +185,7 @@ Page({
     this.setData({
       is_active:false
     })
-    wx.setStorageSync({
+    wx.setStorage({
       key: 'isSet',
       data: true
     });
@@ -276,7 +276,7 @@ Page({
       })
       return false
     }else{
-      var dataStr = new Date().getTime()
+    var dataStr = new Date().getTime()
     if (wx.getStorageSync("collectTime") && wx.getStorageSync("collectTime") > dataStr) {
       this.shareImage()
     } else {
