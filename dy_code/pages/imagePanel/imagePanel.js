@@ -4,6 +4,7 @@ import utils from '../../utils/util.js';
 
 
 const app = getApp();
+let videoAd = null
 Page({
   /**
    * 页面的初始数据
@@ -21,6 +22,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (tt.createRewardedVideoAd) {
+      videoAd = tt.createRewardedVideoAd({
+        adUnitId: '2632m76gpedf5i5952'
+      })
+      // 显示广告
+      videoAd.onLoad(() => { })
+      videoAd.onError((err) => { })
+      videoAd.onClose(res => {
+        if (res.isEnded) {
+          // 给予奖励
+          var data = new Date()
+          let timestr = data.setHours(data.getHours() + 3)
+          tt.setStorageSync("collectTime", timestr)
+        } else if (res.cancel) {
+          console.log("cancel, cold");
+        }
+      });
+    }
     let imgItem = JSON.parse(options.imgItem);
     this.setData({
       imgItem: options.imgItem
@@ -264,36 +283,21 @@ Page({
         content: '观看30s视频解锁下载图片~',
         success(res) {
           if (res.confirm) {
-            let videoAd = tt.createRewardedVideoAd({
-              adUnitId: '2632m76gpedf5i5952'
-            })
-            // 显示广告
-            videoAd
-              .show()
-              .then(() => {
-                console.log("广告显示成功");
-              })
-              .catch(err => {
-                tt.showToast({
-                  title: '广告组件出现问题~',
-                  icon: 'none',
-                  duration: 1000
+            if (videoAd) {
+              videoAd
+                .show()
+                .then(() => {
+                  console.log("广告显示成功");
                 })
-                // 可以手动加载一次
-                videoAd.load().then(() => {
-                  console.log("手动加载成功");
-                  // 加载成功后需要再显示广告
-                  return videoAd.show();
+                .catch(err => {
+                  // 可以手动加载一次
+                  videoAd.load().then(() => {
+                    console.log("手动加载成功");
+                    // 加载成功后需要再显示广告
+                    return videoAd.show();
+                  });
                 });
-              });
-            videoAd.onClose(res => {
-              if (res.isEnded) {
-                // 给予奖励
-                var data = new Date()
-                let timestr = data.setHours(data.getHours() + 3)
-                tt.setStorageSync("collectTime", timestr)
-              }
-            });
+            }
           } else if (res.cancel) {
             console.log("cancel, cold");
           }

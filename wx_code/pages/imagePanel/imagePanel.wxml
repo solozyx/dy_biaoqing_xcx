@@ -1,7 +1,7 @@
 <!--pages/imagePanel/imagePanel.ttml-->
 <view class="select_wrap">
 	<view class="select_container">
-		<image src="{{selectUrl}}" mode="aspectFit" class="image" bindtap="previewImage"></image>
+		<image src="{{selectUrl}}" mode="aspectFit" class="image" bindtap="beforeSave"></image>
 	</view>
 	<view class="bottom_container">
 		<!-- <view class="share" bindtap='shareImage'>
@@ -12,7 +12,7 @@
 			<i class="iconfont icon-btn {{isCollect?'iconshoucangxingxing':'iconshoucangxingxing-xianxing'}}"></i>
 			<text class="collect_text">{{isCollect?"已收藏":"收藏"}}</text>
 		</view>
-		<view class="share" bindtap='shareImage'>
+		<view class="share" bindtap='beforeSave'>
 			<i class="iconfont icon-btn icondownload"></i>
 			<text class="share_text">保存</text>
 		</view>

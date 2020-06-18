@@ -4,6 +4,7 @@ import utils from '../../utils/util.js';
 
 
 const app = getApp();
+let videoAd = null
 Page({
   /**
    * 页面的初始数据
@@ -22,6 +23,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-eecdea2454006b83'
+      })
+      // 显示广告
+      videoAd.onLoad(() => {})
+      videoAd.onError((err) => {})
+      videoAd.onClose(res => {
+        if (res.isEnded) {
+          // 给予奖励
+          var data = new Date()
+          let timestr = data.setHours(data.getHours() + 3)
+          wx.setStorageSync("collectTime", timestr)
+        }
+      });
+    }
     this.setData({
       imgItem:options.imgItem
     })
@@ -152,7 +169,7 @@ Page({
   },
   shareImage: function () {
     var that = this;
-    wx.getStorage({
+    wx.getStorageSync({
       key: 'isSet',
       success: function (res) {
         that.previewImage();
@@ -168,7 +185,7 @@ Page({
     this.setData({
       is_active:false
     })
-    wx.setStorage({
+    wx.setStorageSync({
       key: 'isSet',
       data: true
     });
@@ -259,53 +276,36 @@ Page({
       })
       return false
     }else{
-      this.saveImgs()
-    }
-    // var dataStr = new Date().getTime()
-    // if (wx.getStorageSync("collectTime") && wx.getStorageSync("collectTime") > dataStr) {
-    //   this.saveImgs()
-    // } else {
-    //   wx.showModal({
-    //     title: '温馨提示',
-    //     content: '观看30s视频解锁下载图片~',
-    //     success(res) {
-    //       if (res.confirm) {
-    //         let videoAd = wx.createRewardedVideoAd({
-    //           adUnitId: '2632m76gpedf5i5952'
-    //         })
-    //         // 显示广告
-    //         videoAd
-    //           .show()
-    //           .then(() => {
-    //             console.log("广告显示成功");
-    //           })
-    //           .catch(err => {
-    //             wx.showToast({
-    //               title: '广告组件出现问题~',
-    //               icon: 'none',
-    //               duration: 1000
-    //             })
-    //             // 可以手动加载一次
-    //             videoAd.load().then(() => {
-    //               console.log("手动加载成功");
-    //               // 加载成功后需要再显示广告
-    //               return videoAd.show();
-    //             });
-    //           });
-    //         videoAd.onClose(res => {
-    //           if (res.isEnded) {
-    //             // 给予奖励
-    //             var data = new Date()
-    //             let timestr = data.setHours(data.getHours() + 3)
-    //             wx.setStorageSync("collectTime", timestr)
-    //           }
-    //         });
-    //       } else if (res.cancel) {
-    //         console.log("cancel, cold");
-    //       }
-    //     }
-    //   })
-    // }
+      var dataStr = new Date().getTime()
+    if (wx.getStorageSync("collectTime") && wx.getStorageSync("collectTime") > dataStr) {
+      this.shareImage()
+    } else {
+      wx.showModal({
+        title: '温馨提示',
+        content: '观看30s视频解锁下载图片~',
+        success(res) {
+          if (res.confirm) {
+            if(videoAd){
+              videoAd
+              .show()
+              .then(() => {
+                console.log("广告显示成功");
+              })
+              .catch(err => {
+               // 可以手动加载一次
+                videoAd.load().then(() => {
+                  console.log("手动加载成功");
+                  // 加载成功后需要再显示广告
+                  return videoAd.show();
+                });
+              });
+            }
+          } else if (res.cancel) {
+            console.log("cancel, cold");
+          }
+        }
+      })
+    }}
   },
   saveImgs() {
     let that = this

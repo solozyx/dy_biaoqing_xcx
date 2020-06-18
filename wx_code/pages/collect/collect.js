@@ -177,7 +177,8 @@ Page({
           let nickname = e.detail.userInfo.nickName
           api.get(`${api.SERVER_PATH}wxlogin?code=${res.code}&nick_name=${nickname}`).then(res1=>{
             console.log(res1)
-            app.globalData.openId = res1.data.openId 
+            app.globalData.openId = res1.data.openId
+            this.getCollectImg() 
             this.setData({
               openId:res1.data.openId,
               hasUserInfo: true
