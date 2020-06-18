@@ -3,6 +3,7 @@ import api from '../../utils/api.js';
 import util from '../../utils/util.js';
 
 const app = getApp();
+let videoAd = null
 Page({
   /**
    * 页面的初始数据
@@ -18,6 +19,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-c4d40f7b02f5f9b7'
+      })
+      // 显示广告
+      videoAd.onLoad(() => {})
+      videoAd.onError((err) => {})
+      videoAd.onClose(res => {
+        if (res.isEnded) {
+          // 给予奖励
+          var data = new Date()
+          let timestr = data.setHours(data.getHours() + 3)
+          wx.setStorageSync("collectTime", timestr)
+        }
+      });
+    }
     let that = this;
     if (app.globalData.userInfo && app.globalData.openId) {
       that.setData({
@@ -50,7 +67,6 @@ Page({
    */
   onShow: function () {
     let collectImgObj = wx.getStorageSync("collect_img");
-
     if (collectImgObj) {
       let ids = collectImgObj.map(it => it.img_id);
       let imgs = util.getImgs(ids);
@@ -93,10 +109,39 @@ Page({
       success: function (e) {
         switch (e.tapIndex) {
           case 0:
-            wx.previewImage({
-              current: url,
-              urls: [url]
-            });
+            var dataStr = new Date().getTime()
+            if (wx.getStorageSync("collectTime") && wx.getStorageSync("collectTime") > dataStr) {
+              wx.previewImage({
+                current: url,
+                urls: [url]
+              });
+            } else {
+              wx.showModal({
+                title: '温馨提示',
+                content: '观看30s视频解锁下载图片~',
+                success(res) {
+                  if (res.confirm) {
+                    if(videoAd){
+                      videoAd
+                      .show()
+                      .then(() => {
+                        console.log("广告显示成功");
+                      })
+                      .catch(err => {
+                       // 可以手动加载一次
+                        videoAd.load().then(() => {
+                          console.log("手动加载成功");
+                          // 加载成功后需要再显示广告
+                          return videoAd.show();
+                        });
+                      });
+                    }
+                  } else if (res.cancel) {
+                    console.log("cancel, cold");
+                  }
+                }
+              })
+            }
             break;
 
           case 1:
