@@ -221,11 +221,18 @@ Page({
             obj.openId = res1.data.openId
             obj.userInfo = e.detail.userInfo
             wx.setStorageSync('userData', obj)
-            this.getCollectImg() 
             this.setData({
               openId:res1.data.openId,
               hasUserInfo: true
             })
+            if (app.globalData.imgItemData) {
+              wx.navigateTo({
+                url: '/pages/imagePanel/imagePanel?imgItem=' + app.globalData.imgItemData
+              });
+              app.globalData.imgItemData = null
+              return
+            }
+            this.getCollectImg() 
           })
         },
         fail: res=>{

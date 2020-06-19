@@ -198,8 +198,9 @@ Page({
       wx.showModal({
         title: '温馨提示',
         content: '小主,请先登录小程序，才可以下载图片~',
-        success(res) {
+        success:res=> {
           if (res.confirm) {
+            app.globalData.imgItemData = this.data.imgItem
             wx.switchTab({
               url: '/pages/collect/collect'
             });
@@ -268,8 +269,9 @@ Page({
       wx.showModal({
         title: '温馨提示',
         content: '小主,请先登录小程序，才可以下载图片~',
-        success(res) {
+        success:res=> {
           if (res.confirm) {
+            app.globalData.imgItemData = this.data.imgItem
             wx.switchTab({
               url: '/pages/collect/collect'
             });

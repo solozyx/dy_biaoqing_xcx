@@ -229,6 +229,7 @@ Page({
           tt.navigateTo({
             url: '/pages/imagePanel/imagePanel?imgItem=' + app.globalData.imgItemData
           });
+          app.globalData.imgItemData = null
           return
         }
         this.getCollectImg()

@@ -64,6 +64,7 @@ App({
         })
   },
   globalData: {
+    imgItemData: null,
     hasUnionid: null,
     userInfo: null,
     url: null,
