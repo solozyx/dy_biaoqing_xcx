@@ -111,7 +111,6 @@ Page({
    */
   onShareAppMessage: function (res) {
     let imgItem = this.data.imgItem
-    console.log(imgItem)
     return {
       title: '',
       path: `/pages/imagePanel/imagePanel?imgItem=${imgItem}`,
@@ -194,6 +193,7 @@ Page({
         content: '小主,请先登录小程序，才可以收藏图片~',
         success(res) {
           if (res.confirm) {
+            app.globalData.imgItemData = this.data.imgItem
             tt.switchTab({
               url: '/pages/collect/collect'
             });
@@ -262,8 +262,9 @@ Page({
       tt.showModal({
         title: '温馨提示',
         content: '小主,请先登录小程序，才可以下载图片~',
-        success(res) {
+        success:res=> {
           if (res.confirm) {
+            app.globalData.imgItemData = this.data.imgItem
             tt.switchTab({
               url: '/pages/collect/collect'
             });

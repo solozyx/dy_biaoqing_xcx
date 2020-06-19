@@ -1,7 +1,7 @@
 App({
-  globalData: { userInfo: null },
+  globalData: { imgItemData: null },
   onLaunch: function () {
-    if (!wx.getStorageSync('userData')) {
+    if (!tt.getStorageSync('userData')) {
       this.login(this.getUserInfo)
     }
   },
@@ -64,7 +64,7 @@ App({
       },
       method: 'get',
       success: res1 => {
-        wx.setStorageSync('userData', res1.data)
+        tt.setStorageSync('userData', res1.data)
         if (this.userInfoReadyCallback) {
           this.userInfoReadyCallback(res1.data)
         }

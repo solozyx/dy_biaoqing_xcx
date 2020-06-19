@@ -17,10 +17,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData.imgItemData)
     let that = this;
-    if (wx.getStorageSync('userData')) {
+    if (tt.getStorageSync('userData')) {
       that.setData({
-        userInfo: wx.getStorageSync('userData'),
+        userInfo: tt.getStorageSync('userData'),
         hasUserInfo: true
       });
     } else if (app.userInfoReadyCallback) {
@@ -86,8 +87,8 @@ Page({
     let url = e.target.dataset.url;
     var that = this;
     let img_id = util.getIds([url])[0];
-    let openId = wx.getStorageSync('userData').openId;
-    let urls = this.data.collectData.map(item=>item.split("?")[0])
+    let openId = tt.getStorageSync('userData').openId;
+    let urls = this.data.collectData.map(item => item.split("?")[0])
     tt.showActionSheet({
       itemList: ['发送给朋友', '取消收藏'],
       success: function (e) {
@@ -133,8 +134,8 @@ Page({
       });
     } else {
       // let openId = app.globalData.userInfo.openId
-      if (wx.getStorageSync('userData')) {
-        let openId = wx.getStorageSync('userData').openId;
+      if (tt.getStorageSync('userData')) {
+        let openId = tt.getStorageSync('userData').openId;
         api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then(res => {
           tt.setStorageSync("collect_img", res.data);
           collectImgObj = res.data;
@@ -149,6 +150,9 @@ Page({
     }
   },
   submitSign: function () {
+    tt.showLoading({
+      title: 'loading'
+    });
     this.login(this.getUserInfo)
   },
   login(cb) {
@@ -215,14 +219,22 @@ Page({
       },
       method: 'get',
       success: res1 => {
+        tt.hideLoading();
         this.setData({
           userInfo: res1.data,
           hasUserInfo: true
         })
-        wx.setStorageSync('userData', res1.data)
+        tt.setStorageSync('userData', res1.data)
+        if (app.globalData.imgItemData) {
+          tt.navigateTo({
+            url: '/pages/imagePanel/imagePanel?imgItem=' + app.globalData.imgItemData
+          });
+          return
+        }
         this.getCollectImg()
       },
       fail(res) {
+        tt.hideLoading();
         console.log(`request调用失败`);
       }
     });
