@@ -12,7 +12,9 @@ App({
       success:res=>{
         if (res.code) {
          console.log(res)
-         this.getInfo(res.code)
+         if(!wx.getStorageSync('openId')){
+          this.getInfo(res.code)
+         }
         } else {
           console.log('登录失败！' + res.errMsg)
         }
@@ -37,11 +39,13 @@ App({
                     },
                     method: 'get',
                     success: res1 => {
-                      console.log(res1)
-                      this.globalData.userInfo = res.userInfo
-                      this.globalData.openId = res1.data.openId
+                      let obj= {
+                        openId:res1.data.openId,
+                        userInfo:res.userInfo
+                      }
+                      wx.setStorageSync('userData', obj)
                       if (this.userInfoReadyCallback) {
-                        this.userInfoReadyCallback(this.globalData)
+                        this.userInfoReadyCallback(obj)
                       }
                     },
                     fail(res) {

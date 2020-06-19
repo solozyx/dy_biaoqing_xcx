@@ -88,6 +88,9 @@ Page({
 
   getSearch(value) {
     api.get(api.SERVER_PATH + api.IMGS + `?title=${value}`).then(res => {
+      res.data.forEach((item)=>{
+        item.img = `${item.img}?imageView2/q/30`
+      })
       this.setData({
         searchData: res.data
       });

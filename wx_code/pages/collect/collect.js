@@ -36,10 +36,10 @@ Page({
       });
     }
     let that = this;
-    if (app.globalData.userInfo && app.globalData.openId) {
+    if (wx.getStorageSync('userData')) {
       that.setData({
-        userInfo: app.globalData.userInfo,
-        openId: app.globalData.openId,
+        userInfo: wx.getStorageSync('userData').userInfo,
+        openId: wx.getStorageSync('userData').openId,
         hasUserInfo: true
       });
     } else if (app.userInfoReadyCallback) {
@@ -103,7 +103,8 @@ Page({
     let url = e.target.dataset.url;
     var that = this;
     let img_id = util.getIds([url])[0];
-    let openId = app.globalData.userInfo.openId;
+    let openId = wx.getStorageSync('userData').openId;
+    let urls = this.data.collectData.map(item=>item.split("?")[0])
     wx.showActionSheet({
       itemList: ['发送给朋友', '取消收藏'],
       success: function (e) {
@@ -112,8 +113,8 @@ Page({
             var dataStr = new Date().getTime()
             if (wx.getStorageSync("collectTime") && wx.getStorageSync("collectTime") > dataStr) {
               wx.previewImage({
-                current: url,
-                urls: [url]
+                current: url.split("?")[0],
+                urls: urls
               });
             } else {
               wx.showModal({
@@ -178,10 +179,8 @@ Page({
       });
       console.log(imgs)
     } else {
-      console.log(app)
-      // let openId = app.globalData.userInfo.openId
-      if (app.globalData.userInfo && app.globalData.openId) {
-        let openId = app.globalData.openId;
+      if (wx.getStorageSync('userData')) {
+        let openId = wx.getStorageSync('userData').openId;
         api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then(res => {
           wx.setStorageSync("collect_img", res.data);
           collectImgObj = res.data;
@@ -210,19 +209,18 @@ Page({
     });
   },
   getUserInfo: function(e) {
-    console.log(e)
+    let obj = {}
     if (e.detail.userInfo){
-      app.globalData.userInfo = e.detail.userInfo
       this.setData({
         userInfo: e.detail.userInfo
       })
       wx.login({
         success: res => {
-          console.log(res)
           let nickname = e.detail.userInfo.nickName
           api.get(`${api.SERVER_PATH}wxlogin?code=${res.code}&nick_name=${nickname}`).then(res1=>{
-            console.log(res1)
-            app.globalData.openId = res1.data.openId
+            obj.openId = res1.data.openId
+            obj.userInfo = e.detail.userInfo
+            wx.setStorageSync('userData', obj)
             this.getCollectImg() 
             this.setData({
               openId:res1.data.openId,

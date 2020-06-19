@@ -42,15 +42,16 @@ Page({
     this.setData({
       imgItem:options.imgItem
     })
-    let imgItem = JSON.parse(options.imgItem);
+    let imgItem = JSON.parse(options.imgItem)
+    imgItem.img = `${imgItem.img}?imageView2/q/30`
     this.setData({
-      selectUrl: imgItem.img ||  imgItem["img"]
+      selectUrl: imgItem.img
     })
-    if (app.globalData.userInfo && app.globalData.openId) {
+    if (wx.getStorageSync('userData')) {
       this.setData({
-        openId: app.globalData.openId
+        openId: wx.getStorageSync('userData').openId
       })
-      this.getCollectImg(imgItem.img_id, app.globalData.openId)
+      this.getCollectImg(imgItem.img_id, wx.getStorageSync('userData').openId)
     } else if (app.userInfoReadyCallback) {
       app.userInfoReadyCallback = res => {
         this.setData({
@@ -63,7 +64,7 @@ Page({
       api.get(api.SERVER_PATH + api.IMGS + `?series_id=${imgItem.series_id}`).then(res => {
         console.log(res)
         this.setData({
-          imgData: res.data.map(item => item.img)
+          imgData: res.data.map(item => `${item.img}?imageView2/q/30`)
         })
       });
     } else {
@@ -152,10 +153,11 @@ Page({
    * 预览图片
    */
   previewImage: function (e) {
-    let url = this.data.selectUrl
+    let url = this.data.selectUrl.split("?")[0]
+    let imgData = this.data.imgData.map(item=>item.split("?")[0])
     wx.previewImage({
       current: url,
-      urls: this.data.imgData,
+      urls: imgData,
       success:res=>{
         console.log(res)
       },
@@ -262,7 +264,7 @@ Page({
     });
   },
   beforeSave() {
-    if (!this.data.openId) {
+    if (!wx.getStorageSync('userData')) {
       wx.showModal({
         title: '温馨提示',
         content: '小主,请先登录小程序，才可以下载图片~',
