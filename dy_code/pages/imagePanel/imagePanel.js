@@ -309,7 +309,7 @@ Page({
     let that = this
     let imgs = this.data.imgData
     imgs.forEach((item)=>{
-      item.img = item.split("?")[0]
+      item = item.split("?")[0]
     })
     var all_n = imgs.length
     tt.authorize({
