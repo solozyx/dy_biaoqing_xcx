@@ -88,6 +88,9 @@ Page({
 
   getSearch(value) {
     api.get(api.SERVER_PATH + api.IMGS + `?title=${value}`).then(res => {
+      res.data.forEach((item)=>{
+        item.img = `${item.img}?imageView2/q/30`
+      })
       this.setData({
         searchData: res.data
       });
@@ -95,6 +98,7 @@ Page({
   },
 
   showMoreImg: function (e) {
+    e.target.dataset.item.img =  e.target.dataset.item.img.split("?")[0]
     let imgItem = JSON.stringify(e.target.dataset.item);
     tt.navigateTo({
       url: '/pages/imagePanel/imagePanel?imgItem=' + imgItem

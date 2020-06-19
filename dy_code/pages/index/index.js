@@ -44,6 +44,7 @@ Page({
     this.getAllImg();
   },
   showMoreDetail: function (e) {
+    e.target.dataset.item.img =  e.target.dataset.item.img.split("?")[0]
     let imgItem = JSON.stringify(e.target.dataset.item);
     tt.navigateTo({
       url: `/pages/imagePanel/imagePanel?imgItem=${imgItem}`
@@ -51,6 +52,9 @@ Page({
   },
 
   showMoreImg(e) {
+     e.target.dataset.imgarr.forEach((item)=>{
+      item.img = item.img.split("?")[0]
+    })
     let imgarr = JSON.stringify(e.target.dataset.imgarr);
     let type = e.target.dataset.type;
     tt.navigateTo({
@@ -62,6 +66,9 @@ Page({
    */
   getAllImg: function () {
     api.get(api.SERVER_PATH + api.IMGS).then(res => {
+      res.data.forEach((item)=>{
+        item.img = `${item.img}?imageView2/q/30`
+      })
       res.data = res.data.reverse()
       tt.setStorageSync("all_img", res.data)
       api.get(api.SERVER_PATH + api.CLASSIFY).then(res1 => {

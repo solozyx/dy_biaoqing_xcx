@@ -1,7 +1,9 @@
 App({
   globalData: { userInfo: null },
   onLaunch: function () {
-    this.login(this.getUserInfo)
+    if (!wx.getStorageSync('userData')) {
+      this.login(this.getUserInfo)
+    }
   },
   login(cb) {
     tt.login({
@@ -62,7 +64,7 @@ App({
       },
       method: 'get',
       success: res1 => {
-        this.globalData.userInfo = res1.data
+        wx.setStorageSync('userData', res1.data)
         if (this.userInfoReadyCallback) {
           this.userInfoReadyCallback(res1.data)
         }

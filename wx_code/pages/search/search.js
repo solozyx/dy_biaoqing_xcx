@@ -98,6 +98,7 @@ Page({
   },
 
   showMoreImg: function (e) {
+    e.target.dataset.item.img =  e.target.dataset.item.img.split("?")[0]
     let imgItem = JSON.stringify(e.target.dataset.item);
     wx.navigateTo({
       url: '/pages/imagePanel/imagePanel?imgItem=' + imgItem

@@ -12,7 +12,7 @@ App({
       success:res=>{
         if (res.code) {
          console.log(res)
-         if(!wx.getStorageSync('openId')){
+         if(!wx.getStorageSync('userData')){
           this.getInfo(res.code)
          }
         } else {

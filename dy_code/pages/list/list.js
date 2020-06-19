@@ -28,8 +28,12 @@ Page({
     let isLongType = options.type === 'wallpaper'
     console.log(isLongType)
     let itemClass = isLongType ? 'long-img-item ' : 'img-item'
+    let imgarr = JSON.parse(options.imgarr)
+    imgarr.forEach((item)=>{
+      item.img = `${item.img}?imageView2/q/30`
+    })
     this.setData({
-      listData: JSON.parse(options.imgarr),
+      listData: imgarr,
       itemClass: itemClass,
       imgarr: options.imgarr,
       type: options.type
@@ -82,6 +86,7 @@ Page({
     };
   },
   showMoreDetail: function (e) {
+    e.target.dataset.item.img =  e.target.dataset.item.img.split("?")[0]
     let imgItem = JSON.stringify(e.target.dataset.item);
     tt.navigateTo({
       url: '/pages/imagePanel/imagePanel?imgItem=' + imgItem

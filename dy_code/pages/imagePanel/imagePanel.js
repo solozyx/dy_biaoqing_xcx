@@ -41,18 +41,18 @@ Page({
       });
     }
     let imgItem = JSON.parse(options.imgItem);
+    imgItem.img = `${imgItem.img}?imageView2/q/30`
     this.setData({
       imgItem: options.imgItem
     })
     this.setData({
       selectUrl: imgItem.img
     })
-    if (app.globalData.userInfo && app.globalData.userInfo.openId) {
+    if (wx.getStorageSync('userData')) {
       this.setData({
-        openId: app.globalData.userInfo.openId
+        openId:wx.getStorageSync('userData').openId
       })
-      console.log(imgItem.img_id, app.globalData.userInfo.openId)
-      this.getCollectImg(imgItem.img_id, app.globalData.userInfo.openId)
+      this.getCollectImg(imgItem.img_id, wx.getStorageSync('userData').openId)
     } else if (app.userInfoReadyCallback) {
       app.userInfoReadyCallback = res => {
         this.setData({
@@ -65,7 +65,7 @@ Page({
       api.get(api.SERVER_PATH + api.IMGS + `?series_id=${imgItem.series_id}`).then(res => {
         console.log(res)
         this.setData({
-          imgData: res.data.map(item => item.img)
+           imgData: res.data.map(item => `${item.img}?imageView2/q/30`)
         })
       });
     } else {
@@ -152,13 +152,11 @@ Page({
    * 预览图片
    */
   previewImage: function () {
-    var urls = [];
-    this.data.imgData.map(item => {
-      urls.push(item);
-    });
+    let url = this.data.selectUrl.split("?")[0]
+    let imgData = this.data.imgData.map(item=>item.split("?")[0])
     tt.previewImage({
-      current: this.data.selectUrl,
-      urls: urls
+      current: url,
+      urls: imgData
     });
   },
   shareImage: function () {
@@ -260,7 +258,7 @@ Page({
     });
   },
   beforeSave() {
-    if (!this.data.openId) {
+    if (!wx.getStorageSync('userData')) {
       tt.showModal({
         title: '温馨提示',
         content: '小主,请先登录小程序，才可以下载图片~',
@@ -290,6 +288,7 @@ Page({
                   console.log("广告显示成功");
                 })
                 .catch(err => {
+                  console.log(err)
                   // 可以手动加载一次
                   videoAd.load().then(() => {
                     console.log("手动加载成功");
@@ -308,6 +307,9 @@ Page({
   saveImgs() {
     let that = this
     let imgs = this.data.imgData
+    imgs.forEach((item)=>{
+      item.img = item.split("?")[0]
+    })
     var all_n = imgs.length
     tt.authorize({
       scope: 'scope.writePhotosAlbum',

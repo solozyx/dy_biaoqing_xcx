@@ -18,9 +18,9 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    if (app.globalData.userInfo) {
+    if (wx.getStorageSync('userData')) {
       that.setData({
-        userInfo: app.globalData.userInfo,
+        userInfo: wx.getStorageSync('userData'),
         hasUserInfo: true
       });
     } else if (app.userInfoReadyCallback) {
@@ -86,7 +86,8 @@ Page({
     let url = e.target.dataset.url;
     var that = this;
     let img_id = util.getIds([url])[0];
-    let openId = app.globalData.userInfo.openId;
+    let openId = wx.getStorageSync('userData').openId;
+    let urls = this.data.collectData.map(item=>item.split("?")[0])
     tt.showActionSheet({
       itemList: ['发送给朋友', '取消收藏'],
       success: function (e) {
@@ -94,7 +95,7 @@ Page({
           case 0:
             tt.previewImage({
               current: url,
-              urls: [url]
+              urls: urls
             });
             break;
 
@@ -132,8 +133,8 @@ Page({
       });
     } else {
       // let openId = app.globalData.userInfo.openId
-      if (app.globalData.userInfo && app.globalData.userInfo.openId) {
-        let openId = app.globalData.userInfo.openId;
+      if (wx.getStorageSync('userData')) {
+        let openId = wx.getStorageSync('userData').openId;
         api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then(res => {
           tt.setStorageSync("collect_img", res.data);
           collectImgObj = res.data;
@@ -218,7 +219,7 @@ Page({
           userInfo: res1.data,
           hasUserInfo: true
         })
-        app.globalData.userInfo = res1.data
+        wx.setStorageSync('userData', res1.data)
         this.getCollectImg()
       },
       fail(res) {
