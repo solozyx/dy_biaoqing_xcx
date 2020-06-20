@@ -68,6 +68,7 @@ App({
     userInfo: null,
     url: null,
     openId: null,
-    user: null
+    user: null,
+    imgItemData: null
   }
 })

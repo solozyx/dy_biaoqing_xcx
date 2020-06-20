@@ -19,6 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(options)
     if (wx.createRewardedVideoAd) {
       videoAd = wx.createRewardedVideoAd({
         adUnitId: 'adunit-c4d40f7b02f5f9b7'
@@ -221,11 +222,18 @@ Page({
             obj.openId = res1.data.openId
             obj.userInfo = e.detail.userInfo
             wx.setStorageSync('userData', obj)
-            this.getCollectImg() 
             this.setData({
               openId:res1.data.openId,
               hasUserInfo: true
             })
+            if (app.globalData.imgItemData) {
+              wx.navigateTo({
+                url: '/pages/imagePanel/imagePanel?imgItem=' + app.globalData.imgItemData
+              });
+              app.globalData.imgItemData = null
+              return
+            }
+            this.getCollectImg() 
           })
         },
         fail: res=>{
