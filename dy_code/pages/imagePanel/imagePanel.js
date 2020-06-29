@@ -15,7 +15,8 @@ Page({
     imgData: [],
     openId: null,
     percent_n: 0,
-    imgItem: null
+    imgItem: null,
+    parseImgItem: null
   },
 
   /**
@@ -32,25 +33,39 @@ Page({
       videoAd.onClose(res => {
         if (res.isEnded) {
           // 给予奖励
-          var data = new Date()
-          let timestr = data.setHours(data.getHours() + 3)
-          tt.setStorageSync("collectTime", timestr)
+          if (this.data.parseImgItem.series_id) {
+            let obj = tt.getStorageSync('collectObj') || {}
+            let serkey = `series_id${this.data.parseImgItem.series_id}`
+            let serObj = {}
+            serObj[serkey] = true
+            let assignObj = Object.assign({}, serObj, obj)
+            tt.setStorageSync('collectObj', assignObj)
+          } else {
+            let obj = tt.getStorageSync('collectObj') || {}
+            let serkey = `img_id${this.data.parseImgItem.img_id}`
+            let serObj = {}
+            serObj[serkey] = true
+            let assignObj = Object.assign({}, serObj, obj)
+            tt.setStorageSync('collectObj', assignObj)
+          }
         } else if (res.cancel) {
           console.log("cancel, cold");
         }
       });
     }
     let imgItem = JSON.parse(options.imgItem);
+    console.log(imgItem)
     imgItem.img = `${imgItem.img}?imageView2/q/30`
     this.setData({
-      imgItem: options.imgItem
+      imgItem: options.imgItem,
+      parseImgItem: imgItem
     })
     this.setData({
       selectUrl: imgItem.img
     })
     if (wx.getStorageSync('userData')) {
       this.setData({
-        openId:wx.getStorageSync('userData').openId
+        openId: wx.getStorageSync('userData').openId
       })
       this.getCollectImg(imgItem.img_id, wx.getStorageSync('userData').openId)
     } else if (app.userInfoReadyCallback) {
@@ -65,7 +80,7 @@ Page({
       api.get(api.SERVER_PATH + api.IMGS + `?series_id=${imgItem.series_id}`).then(res => {
         console.log(res)
         this.setData({
-           imgData: res.data.map(item => `${item.img}?imageView2/q/30`)
+          imgData: res.data.map(item => `${item.img}?imageView2/q/30`)
         })
       });
     } else {
@@ -152,7 +167,7 @@ Page({
    */
   previewImage: function () {
     let url = this.data.selectUrl.split("?")[0]
-    let imgData = this.data.imgData.map(item=>item.split("?")[0])
+    let imgData = this.data.imgData.map(item => item.split("?")[0])
     tt.previewImage({
       current: url,
       urls: imgData
@@ -191,7 +206,7 @@ Page({
       tt.showModal({
         title: '温馨提示',
         content: '小主,请先登录小程序，才可以收藏图片~',
-        success:res=> {
+        success: res => {
           if (res.confirm) {
             app.globalData.imgItemData = this.data.imgItem
             tt.switchTab({
@@ -258,29 +273,35 @@ Page({
     });
   },
   beforeSave() {
-    if (!wx.getStorageSync('userData')) {
-      tt.showModal({
-        title: '温馨提示',
-        content: '小主,请先登录小程序，才可以下载图片~',
-        success:res=> {
-          if (res.confirm) {
-            app.globalData.imgItemData = this.data.imgItem
-            tt.switchTab({
-              url: '/pages/collect/collect'
-            });
-          }
-        }
-      })
+    const systemInfo = tt.getSystemInfoSync()
+    console.log(systemInfo.appName === 'Douyin')
+    if (systemInfo.appName !== "Douyin") {
+      this.saveImgs()
       return false
     }
-    var dataStr = new Date().getTime()
-    if (tt.getStorageSync("collectTime") && tt.getStorageSync("collectTime") > dataStr) {
+    // if (!wx.getStorageSync('userData')) {
+    //   tt.showModal({
+    //     title: '温馨提示',
+    //     content: '小主,请先登录小程序，才可以下载图片~',
+    //     success: res => {
+    //       if (res.confirm) {
+    //         app.globalData.imgItemData = this.data.imgItem
+    //         tt.switchTab({
+    //           url: '/pages/collect/collect'
+    //         });
+    //       }
+    //     }
+    //   })
+    //   return false
+    // }
+    // var dataStr = new Date().getTime()
+    if (this.getHasStroge()) {
       this.saveImgs()
     } else {
       tt.showModal({
         title: '温馨提示',
         content: '观看视频解锁下载图片~',
-        success(res) {
+        success: res => {
           if (res.confirm) {
             if (videoAd) {
               videoAd
@@ -305,10 +326,23 @@ Page({
       })
     }
   },
+  getHasStroge() {
+    let key = null
+    if (this.data.parseImgItem.series_id) {
+      key = 'series_id' + this.data.parseImgItem.series_id
+    } else {
+      key = 'img_id' + this.data.parseImgItem.img_id
+    }
+    if (tt.getStorageSync('collectObj')[key]) {
+      return true
+    } else {
+      return false
+    }
+  },
   saveImgs() {
     let that = this
     let imgs = this.data.imgData
-    imgs.forEach((item)=>{
+    imgs.forEach((item) => {
       item = item.split("?")[0]
     })
     var all_n = imgs.length
