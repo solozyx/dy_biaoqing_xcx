@@ -32,7 +32,7 @@ App({
                 success: res => {
                   // 可以将 res 发送给后台解码出 unionId
                   wx.request({
-                    url: "https://dy.test97.com/weapp/wxlogin",
+                    url: "https://testdy.test97.com/weapp/wxlogin",
                     data: {
                       nick_name: res.userInfo.nickName,
                       code

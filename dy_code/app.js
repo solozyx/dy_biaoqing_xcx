@@ -56,7 +56,7 @@ App({
   },
   getInfo(res, code) {
     tt.request({
-      url: "https://dy.test97.com/weapp/login",
+      url: "https://testdy.test97.com/weapp/login",
       data: {
         encryptedData: res.encryptedData,
         iv: res.iv,

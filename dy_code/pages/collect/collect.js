@@ -190,6 +190,7 @@ Page({
               })
             },
             fail: res => {
+              tt.hideLoading()
               tt.showModal({
                 title: '温馨提示',
                 content: '小主，登录小程序，需允许授权用户信息~',
@@ -211,7 +212,7 @@ Page({
   },
   getInfo(res, code) {
     tt.request({
-      url: "https://dy.test97.com/weapp/login",
+      url: "https://testdy.test97.com/weapp/login",
       data: {
         encryptedData: res.encryptedData,
         iv: res.iv,
