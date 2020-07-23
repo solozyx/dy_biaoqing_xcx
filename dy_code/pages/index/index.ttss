@@ -117,7 +117,7 @@
   padding-bottom: 5px;
   border-bottom: 5px solid #ffda44;
 }
-.emoticon,.head-portrait,.wallpaper,.background-image{
+.emoticon,.head-portrait,.wallpaper,.background-image,.contribution{
   display: flex;
   padding: 8px;
 }

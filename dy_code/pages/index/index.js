@@ -15,10 +15,12 @@ Page({
     headPortrait: [],//头像
     backgroundImage: [],//背景图
     wallpaper: [],//壁纸
-    hotEmoticon:[],
-    hotHeadPortrait:[],
-    hotBackgroundImage:[],
-    hotWallpaper:[],
+    contribution: [], // 投稿
+    hotEmoticon: [],
+    hotHeadPortrait: [],
+    hotBackgroundImage: [],
+    hotWallpaper: [],
+    hotContribution: [],
     allImgData: [],
     updateImg: 0,
     height: ''
@@ -44,7 +46,7 @@ Page({
     this.getAllImg();
   },
   showMoreDetail: function (e) {
-    e.target.dataset.item.img =  e.target.dataset.item.img.split("?")[0]
+    e.target.dataset.item.img = e.target.dataset.item.img.split("?")[0]
     let imgItem = JSON.stringify(e.target.dataset.item);
     tt.navigateTo({
       url: `/pages/imagePanel/imagePanel?imgItem=${imgItem}`
@@ -52,7 +54,7 @@ Page({
   },
 
   showMoreImg(e) {
-     e.target.dataset.imgarr.forEach((item)=>{
+    e.target.dataset.imgarr.forEach((item) => {
       item.img = item.img.split("?")[0]
     })
     let imgarr = JSON.stringify(e.target.dataset.imgarr);
@@ -66,7 +68,7 @@ Page({
    */
   getAllImg: function () {
     api.get(api.SERVER_PATH + api.IMGS).then(res => {
-      res.data.forEach((item)=>{
+      res.data.forEach((item) => {
         item.img = `${item.img}?imageView2/q/30`
       })
       res.data = res.data.reverse()
@@ -78,11 +80,13 @@ Page({
           headPortrait: res.data.filter(item => item.classify_id === classifyArr[1]),
           backgroundImage: res.data.filter(item => item.classify_id === classifyArr[2]),
           wallpaper: res.data.filter(item => item.classify_id === classifyArr[3]),
+          contribution: res.data.filter(item => item.classify_id === classifyArr[4]),
           hotEmoticon: res.data.filter(item => item.classify_id === classifyArr[0] && item.ishot),
           hotHeadPortrait: res.data.filter(item => item.classify_id === classifyArr[1] && item.ishot),
           hotBackgroundImage: res.data.filter(item => item.classify_id === classifyArr[2] && item.ishot),
           hotWallpaper: res.data.filter(item => item.classify_id === classifyArr[3] && item.ishot),
-          allImgData: res.data
+          hotContribution: res.data.filter(item => item.classify_id === classifyArr[4] && item.ishot),
+          allImgData: res.data.filter(item => item.classify_id !== classifyArr[4])
         })
         cososle.log(this.data)
       });

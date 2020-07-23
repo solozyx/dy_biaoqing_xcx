@@ -56,6 +56,17 @@
 			</block>
 		</view>
     <view class='dis-line'></view>
+    <view class="contribution border-line-class">
+			<view class="classify-title"><i class="iconfont iconjiarehuoyan icon-title"></i>投稿</view>
+			<view class='show_more' bindtap="showMoreImg" data-imgarr="{{contribution}}" data-type='contribution'>查看更多</view>
+		</view>
+    <view class="img-container">
+			<block tt:for="{{hotContribution}}" tt:for-item="item" tt:for-index="itemIdx">
+				<image bindtap="showMoreDetail" data-item="{{item}}" class="img-item {{(itemIdx+1)%4==0?'lastIndex':''}}" src="{{item.img}}"
+				 mode="scaleToFill" lazy-load="true" tt:if='{{itemIdx<4}}'></image>
+			</block>
+		</view>
+    <view class='dis-line'></view>
 		<view class='contact-container border-line-class'>
       <view class="classify-title"><i class="iconfont icondianzan icon-title"></i>最近更新</view>
 		</view>
