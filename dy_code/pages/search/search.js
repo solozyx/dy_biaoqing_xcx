@@ -56,15 +56,24 @@ Page({
    */
   onShareAppMessage: function () {
     let inputValue = this.data.inputValue
+    if(tt.wechat_user_id){
+      //扫码进来的，直接用二维码中
+      var promote_user_id=tt.wechat_user_id
+    }else{
+      //非扫码进入，从登录的资料中获取
+       var promote_user_id=tt.userinfo.user_id
+    }
     return {
       title: '',
-      path: `/pages/search/search?searchValue=${inputValue}`,
+      path: `/pages/search/search?searchValue=${inputValue}?promote_user_id=${promote_user_id}`,
       success: function (res) {// 转发成功
       },
       fail: function (res) {// 转发失败
       }
     };
   },
+
+
   listenerSearchInput: function (e) {
     this.setData({
       inputValue: e.detail.value

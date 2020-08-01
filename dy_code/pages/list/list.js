@@ -76,15 +76,25 @@ Page({
   onShareAppMessage: function () {
     let type = this.data.type
     let imgarr = this.data.imgarr
+
+    if(tt.wechat_user_id){
+      //扫码进来的，直接用二维码中
+      var promote_user_id=tt.wechat_user_id
+    }else{
+      //非扫码进入，从登录的资料中获取
+       var promote_user_id=tt.userinfo.user_id
+    }
     return {
       title: '',
-      path: `/pages/list/list?imgarr=${imgarr}&type=${type}`,
+      path: `/pages/list/list?imgarr=${imgarr}&type=${type}?promote_user_id=${promote_user_id}`,
       success: function (res) {// 转发成功
       },
       fail: function (res) {// 转发失败
       }
     };
   },
+
+  
   showMoreDetail: function (e) {
     e.target.dataset.item.img =  e.target.dataset.item.img.split("?")[0]
     let imgItem = JSON.stringify(e.target.dataset.item);

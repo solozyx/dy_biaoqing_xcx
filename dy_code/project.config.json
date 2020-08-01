@@ -7,5 +7,23 @@
 		"newFeature": true
 	},
 	"appid": "ttae64d8d9315e744a",
-	"projectname": "dy_biaoqing_xcx"
+	"projectname": "dy_biaoqing_xcx",
+	"condition": {
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "绑定微信",
+					"pathName": "pages/index/index",
+					"query": "wechat_user_id=11",
+					"scene": "011001",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": ""
+					}
+				}
+			]
+		}
+	}
 }

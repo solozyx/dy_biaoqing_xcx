@@ -1,10 +1,9 @@
 // pages/imagePanel/imagePanel.js
 import api from '../../utils/api.js';
 import utils from '../../utils/util.js';
-
+import apis from '../../utils/apis.js';
 
 const app = getApp();
-let videoAd = null
 Page({
   /**
    * 页面的初始数据
@@ -19,40 +18,30 @@ Page({
     parseImgItem: null
   },
 
+  //发放激励广告奖励
+  addAdPlayerHistory() {
+    var that = this
+    console.log('广告已经看完，直接给激励')
+    apis.addAdPlayerHistory({
+      //推广者的id
+      promote_user_id: tt.promote_user_id || 0,
+      //产品id
+      product_id: 0,
+      token: tt.token
+    }).then(res => {
+      if (res.code == 200) {
+        console.log('激励奖励领取成功')
+      } else {
+
+      }
+    })
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (tt.createRewardedVideoAd) {
-      videoAd = tt.createRewardedVideoAd({
-        adUnitId: '2632m76gpedf5i5952'
-      })
-      // 显示广告
-      videoAd.onLoad(() => { })
-      videoAd.onError((err) => { })
-      videoAd.onClose(res => {
-        if (res.isEnded) {
-          // 给予奖励
-          if (this.data.parseImgItem.series_id) {
-            let obj = tt.getStorageSync('collectObj') || {}
-            let serkey = `series_id${this.data.parseImgItem.series_id}`
-            let serObj = {}
-            serObj[serkey] = true
-            let assignObj = Object.assign({}, serObj, obj)
-            tt.setStorageSync('collectObj', assignObj)
-          } else {
-            let obj = tt.getStorageSync('collectObj') || {}
-            let serkey = `img_id${this.data.parseImgItem.img_id}`
-            let serObj = {}
-            serObj[serkey] = true
-            let assignObj = Object.assign({}, serObj, obj)
-            tt.setStorageSync('collectObj', assignObj)
-          }
-        } else if (res.cancel) {
-          console.log("cancel, cold");
-        }
-      });
-    }
     let imgItem = JSON.parse(options.imgItem);
     console.log(imgItem)
     imgItem.img = `${imgItem.img}?imageView2/q/30`
@@ -121,14 +110,26 @@ Page({
    */
   onReachBottom: function () { },
 
+
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
     let imgItem = this.data.imgItem
+    if (tt.wechat_user_id) {
+      //扫码进来的，直接用二维码中
+      var promote_user_id = tt.wechat_user_id
+    } else {
+      //非扫码进入，从登录的资料中获取
+      var promote_user_id = tt.userinfo.user_id
+    }
+    var path = `/pages/imagePanel/imagePanel?imgItem=${imgItem}&promote_user_id=${promote_user_id}`
+
+    console.log('页面为：', path)
+
     return {
       title: '',
-      path: `/pages/imagePanel/imagePanel?imgItem=${imgItem}`,
+      path: path,
       success: function (res) {// 转发成功
       },
       fail: function (res) {// 转发失败
@@ -136,6 +137,48 @@ Page({
     };
   },
 
+  creatVideo() {
+    if (tt.createRewardedVideoAd) {
+      let videoAd = null
+      videoAd = tt.createRewardedVideoAd({
+        adUnitId: 'i27968nec0d11b4h95'
+      })
+      console.log(videoAd)
+      显示广告
+      videoAd.onLoad(() => { })
+      videoAd.onError((err) => { 
+        console.log(err)
+      })
+      videoAd.onClose(res => {
+        //判断是否看完了广告
+        if (res.isEnded) {
+          console.log('广告看完了')
+          that.addAdPlayerHistory()
+          // 给予奖励
+          if (this.data.parseImgItem.series_id) {
+            let obj = tt.getStorageSync('collectObj') || {}
+            let serkey = `series_id${this.data.parseImgItem.series_id}`
+            let serObj = {}
+            serObj[serkey] = true
+            let assignObj = Object.assign({}, serObj, obj)
+            tt.setStorageSync('collectObj', assignObj)
+          } else {
+            let obj = tt.getStorageSync('collectObj') || {}
+            let serkey = `img_id${this.data.parseImgItem.img_id}`
+            let serObj = {}
+            serObj[serkey] = true
+            let assignObj = Object.assign({}, serObj, obj)
+            tt.setStorageSync('collectObj', assignObj)
+          }
+
+        } else if (res.cancel) {
+          //没看完，不给激励广告
+          console.log("cancel, cold");
+        }
+      });
+      return videoAd
+    }
+  },
   getCollectImg(imgId, openId) {
     api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then((res) => {
       tt.setStorageSync("collect_img", res.data)
@@ -275,10 +318,10 @@ Page({
   beforeSave() {
     const systemInfo = tt.getSystemInfoSync()
     console.log(systemInfo.appName === 'Douyin')
-    if (systemInfo.appName !== "Douyin") {
-      this.saveImgs()
-      return false
-    }
+    // if (systemInfo.appName !== "Douyin") {
+    //   this.saveImgs()
+    //   return false
+    // }
     // if (!wx.getStorageSync('userData')) {
     //   tt.showModal({
     //     title: '温馨提示',
@@ -303,6 +346,7 @@ Page({
         content: '观看视频解锁下载图片~',
         success: res => {
           if (res.confirm) {
+            let videoAd = this.creatVideo()
             if (videoAd) {
               videoAd
                 .show()
