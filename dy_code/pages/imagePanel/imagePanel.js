@@ -273,6 +273,7 @@ Page({
     });
   },
   beforeSave() {
+    let that = this
     const systemInfo = tt.getSystemInfoSync()
     console.log(systemInfo.appName === 'Douyin')
     if (systemInfo.appName !== "Douyin") {
