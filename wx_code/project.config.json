@@ -25,5 +25,6 @@
 	"projectname": "dy_biaoqing_xcx",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"compileType": "miniprogram",
 	"condition": {}
 }

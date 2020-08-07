@@ -136,49 +136,6 @@ Page({
       }
     };
   },
-
-  creatVideo() {
-    if (tt.createRewardedVideoAd) {
-      let videoAd = null
-      videoAd = tt.createRewardedVideoAd({
-        adUnitId: 'i27968nec0d11b4h95'
-      })
-      console.log(videoAd)
-      显示广告
-      videoAd.onLoad(() => { })
-      videoAd.onError((err) => { 
-        console.log(err)
-      })
-      videoAd.onClose(res => {
-        //判断是否看完了广告
-        if (res.isEnded) {
-          console.log('广告看完了')
-          that.addAdPlayerHistory()
-          // 给予奖励
-          if (this.data.parseImgItem.series_id) {
-            let obj = tt.getStorageSync('collectObj') || {}
-            let serkey = `series_id${this.data.parseImgItem.series_id}`
-            let serObj = {}
-            serObj[serkey] = true
-            let assignObj = Object.assign({}, serObj, obj)
-            tt.setStorageSync('collectObj', assignObj)
-          } else {
-            let obj = tt.getStorageSync('collectObj') || {}
-            let serkey = `img_id${this.data.parseImgItem.img_id}`
-            let serObj = {}
-            serObj[serkey] = true
-            let assignObj = Object.assign({}, serObj, obj)
-            tt.setStorageSync('collectObj', assignObj)
-          }
-
-        } else if (res.cancel) {
-          //没看完，不给激励广告
-          console.log("cancel, cold");
-        }
-      });
-      return videoAd
-    }
-  },
   getCollectImg(imgId, openId) {
     api.get(api.SERVER_PATH + api.COLLECT + `?user_id=${openId}`).then((res) => {
       tt.setStorageSync("collect_img", res.data)
@@ -318,10 +275,10 @@ Page({
   beforeSave() {
     const systemInfo = tt.getSystemInfoSync()
     console.log(systemInfo.appName === 'Douyin')
-    // if (systemInfo.appName !== "Douyin") {
-    //   this.saveImgs()
-    //   return false
-    // }
+    if (systemInfo.appName !== "Douyin") {
+      this.saveImgs()
+      return false
+    }
     // if (!wx.getStorageSync('userData')) {
     //   tt.showModal({
     //     title: '温馨提示',
@@ -346,23 +303,55 @@ Page({
         content: '观看视频解锁下载图片~',
         success: res => {
           if (res.confirm) {
-            let videoAd = this.creatVideo()
-            if (videoAd) {
-              videoAd
-                .show()
-                .then(() => {
-                  console.log("广告显示成功");
+            let videoAd = tt.createRewardedVideoAd({
+              adUnitId: '2632m76gpedf5i5952'
+            })
+            // 显示广告
+            videoAd
+              .show()
+              .then(() => {
+                console.log("广告显示成功");
+              })
+              .catch(err => {
+                tt.showToast({
+                  title: '广告组件出现问题~',
+                  icon: 'none',
+                  duration: 1000
                 })
-                .catch(err => {
-                  console.log(err)
-                  // 可以手动加载一次
-                  videoAd.load().then(() => {
-                    console.log("手动加载成功");
-                    // 加载成功后需要再显示广告
-                    return videoAd.show();
-                  });
+                // 可以手动加载一次
+                videoAd.load().then(() => {
+                  console.log("手动加载成功");
+                  // 加载成功后需要再显示广告
+                  return videoAd.show();
                 });
-            }
+              });
+            videoAd.onClose(res => {
+                // 给予奖励
+                //判断是否看完了广告
+                if (res.isEnded) {
+                  console.log('广告看完了')
+                  that.addAdPlayerHistory()
+                  // 给予奖励
+                  if (this.data.parseImgItem.series_id) {
+                    let obj = tt.getStorageSync('collectObj') || {}
+                    let serkey = `series_id${this.data.parseImgItem.series_id}`
+                    let serObj = {}
+                    serObj[serkey] = true
+                    let assignObj = Object.assign({}, serObj, obj)
+                    tt.setStorageSync('collectObj', assignObj)
+                  } else {
+                    let obj = tt.getStorageSync('collectObj') || {}
+                    let serkey = `img_id${this.data.parseImgItem.img_id}`
+                    let serObj = {}
+                    serObj[serkey] = true
+                    let assignObj = Object.assign({}, serObj, obj)
+                    tt.setStorageSync('collectObj', assignObj)
+                  }
+                } else if (res.cancel) {
+                  //没看完，不给激励广告
+                  console.log("cancel, cold");
+                }
+            });
           } else if (res.cancel) {
             console.log("cancel, cold");
           }

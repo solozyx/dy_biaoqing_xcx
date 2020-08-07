@@ -41,6 +41,33 @@ App({
     })
   },
 
+  //调用分销端的登录
+  loginDistribution(code) {
+    apis.login({ code: code }).then(res => {
+      var data = res.data.data
+      console.log('分销端的登录为', data)
+      tt.token = data.token
+
+      //登录成功之后，获取用户资料
+      that.getTtUserInfo()
+      try {
+        //更新用户资料
+        that.updateUserInfo()
+      } catch (e) {
+
+      }
+      //判断微信是否绑定成功了
+      if (tt.isBindWechat === false) {
+        that.bindWechat({
+          wechat_user_id: tt.wechat_user_id,
+          token: tt.token
+        })
+      }
+
+    }).catch(err => {
+      console.log('错误')
+    })
+  },
   //更新用户资料
   updateUserInfo() {
     tt.getUserInfo({
@@ -52,8 +79,8 @@ App({
         }
         apis.updateUserInfo(data).then(res => {
           console.log('资料更新', res.data.data)
-        }).catch(err=>{
-          console.log('err',err)
+        }).catch(err => {
+          console.log('err', err)
         })
       }, fail: res => {
         console.log('获取资料失败')
@@ -98,57 +125,18 @@ App({
 
 
   onLaunch: function (e) {
-
-    console.log(e)
     var that = this
-
     this.checkWxCode(e)
-
-    //调用分销端的登录
-    tt.login({
-      success(res) {
-        apis.login({ code: res.code }).then(res => {
-          var data = res.data.data
-          console.log('分销端的登录为', data)
-          tt.token = data.token
-
-          //登录成功之后，获取用户资料
-          that.getTtUserInfo()
-          try{
-          //更新用户资料
-          that.updateUserInfo()
-          }catch(e){
-
-          }
-         
-
-          //判断微信是否绑定成功了
-          if (tt.isBindWechat === false) {
-            that.bindWechat({
-              wechat_user_id: tt.wechat_user_id,
-              token: tt.token
-            })
-          }
-
-        }).catch(err => {
-          console.log('错误')
-        })
-      },
-      fail(res) {
-        console.log(`login调用失败`);
-      }
-    });
-
-    if (!tt.getStorageSync('userData')) {
-      this.login(this.getUserInfo)
-    }
+    this.login(this.getUserInfo)
   },
 
   login(cb) {
     tt.login({
-      success(res) {
-        console.log('login', res);
-        cb(res.code)
+      success:res=> {
+        this.loginDistribution(res.code)
+        if (!tt.getStorageSync('userData')) {
+          cb(res.code)
+        }
       },
       fail(res) {
         console.log(`login调用失败`);
